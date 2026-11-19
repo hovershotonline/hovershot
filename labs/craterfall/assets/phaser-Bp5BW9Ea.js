@@ -6358,4 +6358,3 @@ return new `+this.key+`();
  * @copyright    2013-2025 Phaser Studio Inc.
  * @license      {@link https://opensource.org/licenses/MIT|MIT License}
  */p.exports={Format:t(27902),Pad:t(41836),RemoveAt:t(33628),Reverse:t(27671),UppercaseFirst:t(35355),UUID:t(45650)}})},yt={};function gt(p){var S=yt[p];if(S!==void 0)return S.exports;var t=yt[p]={exports:{}};return Tt[p](t,t.exports,gt),t.exports}gt.g=(function(){if(typeof globalThis=="object")return globalThis;try{return this||new Function("return this")()}catch{if(typeof window=="object")return window}})();var Et=gt(85454);return Et})())})(xt)),xt.exports}export{Mt as r};
-//# sourceMappingURL=phaser-ZmHddmjc.js.map
