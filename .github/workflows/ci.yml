@@ -1,0 +1,39 @@
+name: Hover Shot - Build dos laboratorios
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: hover-shot-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Instalar dependencias
+        run: npm install --no-audit --no-fund
+      - name: Testes do motor
+        run: npm test
+      - name: Compilar hub e laboratorio 01
+        run: npm run build
+      - name: Verificar artefatos
+        run: |
+          test -s dist/index.html
+          test -s dist/assets/home.css
+          test -s dist/labs/craterfall/index.html
+          test -d dist/labs/craterfall/assets
+          echo "RESULTADO=BUILD_VALIDADO"
+      - uses: actions/upload-artifact@v4
+        with:
+          name: hover-shot-dist
+          path: dist/
+          retention-days: 7
