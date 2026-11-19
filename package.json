@@ -6,7 +6,7 @@
   "scripts": {
     "build": "node scripts/build.mjs",
     "typecheck": "tsc -p labs/craterfall/tsconfig.json --noEmit",
-    "test": "vitest run --config labs/craterfall/vite.config.ts --root labs/craterfall"
+    "test": "vitest run --root labs/craterfall --config vite.config.ts"
   },
   "dependencies": {
     "phaser": "3.90.0"
