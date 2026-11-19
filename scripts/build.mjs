@@ -10,4 +10,5 @@ for(const bin of [ts,vite])if(!existsSync(bin)){console.error('Dependências aus
 for(const args of [[ts,'-p',resolve(root,'labs/craterfall/tsconfig.json'),'--noEmit'],[vite,'build',resolve(root,'labs/craterfall'),'--outDir',resolve(dist,'labs/craterfall')]]){
 const p=spawnSync(process.execPath,args,{cwd:root,stdio:'inherit',env:{...process.env,BASE_PATH:'/labs/craterfall/'}});if(p.status!==0)process.exit(p.status??1);
 }
+cpSync(resolve(root,'labs/craterfall/LICENSE'), resolve(dist,'labs/craterfall/LICENSE'));
 console.log('RESULTADO=HOVERSHOT_DIST_PRONTO');
