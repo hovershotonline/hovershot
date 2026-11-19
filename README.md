@@ -26,3 +26,7 @@ O LAB 01 reutiliza a base [Craterfall](https://github.com/blueRonyHazard/craterf
 - [Configuração do MySQL da Hostinger](docs/DATABASE_SETUP.md)
 
 **Status:** código e home versionados; não afirmar site publicado até verificar a Hostinger.
+
+## Publicação
+
+✅ CI e build aprovados no GitHub Actions. A branch [site-build](https://github.com/hovershotonline/hovershot/tree/site-build) contém os **arquivos estáticos prontos** (~1,58 MB) e a licença do Craterfall. **Ainda falta o deploy para a Hostinger.** Ver [procedimento de publicação](docs/DEPLOY.md).

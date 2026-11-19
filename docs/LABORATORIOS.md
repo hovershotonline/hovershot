@@ -37,6 +37,10 @@ A raiz contém `site/` e `scripts/build.mjs`. O comando `npm install && npm test
 - [x] Home com três posições, filtros, modal de detalhes e um link para a base importada implementada.
 - [x] Banco e `.env` já criados e testados na Hostinger (não usados pelo LAB 01).
 - [x] Workflow CI criado no repositório.
-- [ ] Verificar GitHub Actions verde e artefato `dist` gerado.
+- [x] GitHub Actions com testes/build aprovado e branch `site-build` gerada: 11 arquivos, ~1,58 MB, sem sourcemaps, licença MIT preservada.
 - [ ] Definir e configurar deploy seguro de `dist/` no domínio, sem interferir com outros sites compartilhados da Hostinger.
 - [ ] Confirmar em navegador a home e o Craterfall publicados antes de marcar o laboratório como jogável online.
+
+## Publicação
+
+Consulte [DEPLOY.md](DEPLOY.md). A branch `site-build` está verificada, mas o domínio Hostinger ainda não recebeu esse build nesta operação.
