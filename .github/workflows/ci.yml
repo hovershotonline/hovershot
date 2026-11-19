@@ -37,3 +37,46 @@ jobs:
           name: hover-shot-dist
           path: dist/
           retention-days: 7
+
+  preparar-publicacao:
+    name: Disponibilizar build estatico no GitHub
+    needs: build
+    if: github.ref == 'refs/heads/main' && github.event_name != 'pull_request'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/download-artifact@v4
+        with:
+          name: hover-shot-dist
+          path: ${{ runner.temp }}/hover-shot-publicacao
+      - name: Validar artefato antes da promocao
+        run: |
+          test -s "${RUNNER_TEMP}/hover-shot-publicacao/index.html"
+          test -s "${RUNNER_TEMP}/hover-shot-publicacao/labs/craterfall/index.html"
+      - name: Publicar apenas os arquivos compilados na branch site-build
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+          if git ls-remote --exit-code --heads origin site-build >/dev/null 2>&1; then
+            git fetch origin site-build
+            git checkout -B site-build FETCH_HEAD
+          else
+            git checkout --orphan site-build
+          fi
+          git rm -r --cached . >/dev/null 2>&1 || true
+          find . -mindepth 1 -maxdepth 1 ! -name .git -exec rm -rf -- {} +
+          cp -a "${RUNNER_TEMP}/hover-shot-publicacao/." .
+          printf '%s\n' "${GITHUB_SHA}" > .hover-shot-source-commit
+          git add -A
+          if git diff --cached --quiet; then
+            echo "RESULTADO=SITE_BUILD_SEM_ALTERACOES"
+            exit 0
+          fi
+          git -c user.name="hover-shot-actions" -c user.email="actions@users.noreply.github.com" commit -m "build: site Hover Shot ${GITHUB_SHA}"
+          git push origin HEAD:refs/heads/site-build
+          echo "RESULTADO=BRANCH_SITE_BUILD_ATUALIZADA"
