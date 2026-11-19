@@ -12,7 +12,7 @@ export default defineConfig({
   build: {
     outDir: 'dist',
     target: 'es2022',
-    sourcemap: true,
+    sourcemap: false,
     // Phaser alone is ~1.2 MB minified; keep it in its own long-cacheable chunk.
     chunkSizeWarningLimit: 1600,
     rollupOptions: {
