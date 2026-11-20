@@ -17,6 +17,8 @@ test('deploy depende de segredo e falha fechada quando nao configurado',()=>{
   assert.match(workflow,/secrets\.HOVERSHOT_DEPLOY_SSH_PRIVATE_KEY/);
   assert.match(workflow,/steps\.credential\.outputs\.ready == 'true'/);
   assert.match(workflow,/DEPLOY=AGUARDANDO_CREDENCIAL_SSH/);
+  assert.match(workflow,/DEPLOY BLOQUEADO/);
+  assert.match(workflow,/exit 1/);
   assert.match(deploy,/CHAVE_SSH_INVALIDA_OU_COM_SENHA/);
   assert.doesNotMatch(deploy,/set -x/);
 });

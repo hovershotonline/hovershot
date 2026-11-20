@@ -9,7 +9,7 @@ O workflow `Hover Shot - CI, Build e Deploy` começa em cada push para `main` ou
 1. `build`: testes de combate e de catálogo, auditoria estática do script de deploy, geração da home e dos jogos instalados; artefato GitHub retenção de 7 dias.
 2. `hillshot-multiplayer-qa`: verificação isolada de dois clientes WebSocket em localhost. **Não implica implantação do Hillshot**.
 3. `preparar-publicacao`: espera os dois jobs anteriores e publica o build na branch `site-build` com marcador SHA do código de origem.
-4. `deploy-hostinger`: só após o passo 3, verifica se há a chave SSH; se ausente, registra `DEPLOY=AGUARDANDO_CREDENCIAL_SSH` e aviso no Actions sem alterar a hospedagem. Quando disponível, usa o script versionado `scripts/deploy-hostinger.sh` para publicar o **mesmo artefato testado**, sem depender do computador do proprietário.
+4. `deploy-hostinger`: só após o passo 3, verifica se há a chave SSH; se ausente, registra `DEPLOY=AGUARDANDO_CREDENCIAL_SSH`, **falha explicitamente no job de deploy** e não altera a hospedagem (evita status verde enganoso). Quando disponível, usa o script versionado `scripts/deploy-hostinger.sh` para publicar o **mesmo artefato testado**, sem depender do computador do proprietário.
 
 O deploy é idempotente, valida SHA da `main` e da `site-build` para evitar reimplantar versões antigas, compara conteúdo antes de substituir, preserva arquivos não presentes no build (sem `rsync --delete`), mantém jogos anteriores e verifica os URLs públicos. Não implanta projetos externos sem licença apenas por constarem nos cards.
 

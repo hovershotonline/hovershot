@@ -155,9 +155,9 @@ jobs:
         run: |
           if [[ -z "$PRIVATE_KEY" ]]; then
             echo "ready=false" >> "$GITHUB_OUTPUT"
-            echo "::warning::Deploy não executado: cadastrar o segredo HOVERSHOT_DEPLOY_SSH_PRIVATE_KEY em Settings > Secrets and variables > Actions."
-            echo "DEPLOY=AGUARDANDO_CREDENCIAL_SSH" >> "$GITHUB_STEP_SUMMARY"
-            exit 0
+            echo "::error::DEPLOY BLOQUEADO: cadastre o segredo HOVERSHOT_DEPLOY_SSH_PRIVATE_KEY em Settings > Secrets and variables > Actions."
+            echo "DEPLOY=AGUARDANDO_CREDENCIAL_SSH (falha explícita; nenhuma alteração no host)" >> "$GITHUB_STEP_SUMMARY"
+            exit 1
           fi
           echo "ready=true" >> "$GITHUB_OUTPUT"
           echo "CREDENCIAL_SSH=DISPONIVEL" >> "$GITHUB_STEP_SUMMARY"

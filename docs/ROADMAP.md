@@ -3,7 +3,7 @@
 ## Entrega CI/CD — acompanhamento
 - [x] Workflow automático e manual configurado na main, com publicação por SSH após QA.
 - [x] Script de deploy incremental, validação de fingerprint, staging privado, rollback transitório e limpeza implementados no GitHub.
-- [ ] CI validar sintaxe, testes de segurança e publicação do artefato, incluindo execução do job novo.
+- [x] CI validou sintaxe, testes de segurança e publicação do artefato (run 44675578673). Job de deploy foi executado, mas **o passo SSH foi ignorado porque o segredo não estava cadastrado**; não houve deploy.
 - [ ] Cadastrar uma única vez `HOVERSHOT_DEPLOY_SSH_PRIVATE_KEY` no GitHub Actions, sem divulgar a chave.
 - [ ] Verificar primeiro deploy real por Actions (marcadores de sucesso, HTTP, Guntanks/Craterfall preservados).
 - [ ] Manter deploy automático nas futuras alterações validadas, respeitando catálogo permanente.
