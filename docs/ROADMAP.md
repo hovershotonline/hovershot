@@ -85,7 +85,7 @@
 - [x] Conferir a fonte original `remcostoeten/Gunbound` no commit `3e807036f444d006d89050c3f89802ed082d9115`, licença MIT.
 - [x] Auditar dependências do código: Bun + Next.js 15 + SpacetimeDB 2.2. O módulo atualmente é **TypeScript** em `server/spacetimedb/src/` (README com menção a Rust está desatualizado).
 - [x] Documentar configuração local de websocket e publicação de módulo isolado; ver [REMBOUND_TESTE_LOCAL.md](REMBOUND_TESTE_LOCAL.md).
-- [ ] Validar instalação efetiva de Bun, CLI SpacetimeDB, módulo local e frontend no Windows do proprietário.
+- [x] Validar instalação de Bun, SpacetimeDB 2.2, módulo `gunbound` e HTTP 200 após patch no Windows (log do proprietário de 20/11/2026).
 - [ ] Executar QA no navegador com autenticação local, treino contra bot, Aduka, lobby e disparos.
 - [ ] Somente depois avaliar publicação própria sob Hover Shot, respeitando componentes persistentes e direitos dos assets. `public_html` estático não executa o backend SpacetimeDB.
 
@@ -94,5 +94,7 @@
 - [x] Verificar Bun, SpacetimeDB local e módulo `gunbound` já instalados/publicados por log do usuário.
 - [x] Comparar erro Next.js `Expected '}', got '<eof>'` com fonte original, confirmar `if (event.code === "KeyA")` duplicado nas linhas 106–109.
 - [x] Versionar patch mínimo de duas linhas em `patches/rembound/0001-fix-keyup-duplicate.patch`.
-- [ ] Aplicar patch **somente na cópia local** após backup e verificar HTTP 200 no frontend.
+- [x] Aplicar patch **somente na cópia local** com backup e validar `FRONTEND_HTTP=200`, `REMBOUND_FRONTEND_CORRIGIDO`.
 - [ ] Verificar visual, autenticação, lobby, Aduka, tiros, bot, terreno e durabilidade do SpacetimeDB. Aviso de fsync com acesso negado foi visto nos logs do banco.
+
+**Evidência recente (20/11/2026):** Rembound original já abre por HTTP 200 em `127.0.0.1:18763` após patch de duas linhas, usando backend ativo `127.0.0.1:18764`. **QA visual/funcional continua pendente**; não confundir HTTP 200 com partida validada. Ver `REMBOUND_TESTE_LOCAL.md`.

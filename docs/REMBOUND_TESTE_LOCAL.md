@@ -39,4 +39,10 @@ O ambiente Windows **já tem** Bun 1.4.5, SpacetimeDB 2.2.0, repositório origin
 
 A mensagem `webpack.cache.PackFileCacheStrategy ENOENT` apareceu depois do erro de compilação — tratar como sintoma secundário, não apagar cache ou dados do SpacetimeDB sem evidência. Um aviso do banco sobre `failed to fsync ... os error 5` precisa ser acompanhado caso persista; **não afirmar que o banco é robusto para produção sem teste de durabilidade**. O relatório anterior também identificou ausência de `System32` no `PATH`, que impediu `taskkill.exe` na recuperação. A correção local não exige encerrar processos nem banco.
 
-**Status:** causa exata auditada; patch registrado; execução no Windows e verificação de HTTP 200 ainda **pendentes**. Testar depois renderização e gameplay real, inclusive teclado, Aduka e login.
+**Status histórico:** causa exata auditada e patch registrado; resultados posteriores descritos abaixo.
+
+## Rembound no Windows: patch aplicado e HTTP 200 — 20/11/2026
+
+**Log de execução fornecido pelo proprietário:** `ERRO_ORIGINAL=CONFIRMADO`, `BACKUP=VALIDADO`, `PATCH=APLICADO`, `LINHAS_DUPLICADAS_REMOVIDAS=2`, `SPACETIMEDB=ATIVO`, `FRONTEND=REUTILIZANDO_PROCESSO_EXISTENTE`, `FRONTEND_HTTP=200`, `RESULTADO=REMBOUND_FRONTEND_CORRIGIDO`. O frontend local é `http://127.0.0.1:18763/`, o SpacetimeDB local está na porta `18764`. `SPACETIMEDB_DADOS=INALTERADOS` e `HOSTINGER=INALTERADA` foram impressos pelo script. **Não foi feito deploy de Rembound em hovershot.online.**
+
+A origem do erro era a duplicação do `if (event.code === "KeyA")` no hook `use-input.ts` do commit original; o patch salvo em `patches/rembound/0001-fix-keyup-duplicate.patch` foi aplicado apenas à cópia local, com backup. **HTTP 200 demonstra entrega da página, não garante** compilação de todos os módulos dinâmicos, conexão no navegador, autenticação funcional nem partida. Próxima validação: acesso real ao lobby, registro com senha exclusiva de teste, seleção do Aduka, prática com bot e disparos/vento/terreno/turnos, conferindo console do navegador e conexão websocket ao SpacetimeDB. Acompanhamento do aviso anterior `failed to fsync ... Acesso negado` também permanece pendente antes de uso persistente. Não alterar banco nem implantar fora de laboratório até aprovação da experiência.
