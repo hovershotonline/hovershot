@@ -112,3 +112,13 @@
 - [ ] Somente após protótipo validado em laboratório, integrar a experiência aprovada no Hover Shot; **não** alterar produção automaticamente.
 
 **Distinção de estado:** feedback foi **observado pelo usuário**; divergência no código `aduko` foi **verificada na fonte**; próximo motor/implementação são **propostas**, não funcionalidades prontas. Detalhes em `REMBOUND_TESTE_LOCAL.md`.
+
+## Seleção de nova base de combate — 19/11/2026
+
+Após playtest que reprovou a fidelidade do Rembound, foram pesquisados **DragonBound** (jogável no navegador; servidor 9 Aduka), **GunBound Classic** (cliente Windows comunitário), **GunBros** (fonte de engine própria; `aduka.s2=thorCall`, sandbox de desenvolvimento em `:5173/sandbox`, ainda sem teste funcional), **Season 2 HTML5** (anúncio de autor, demo não verificada), e **GunBound World Champion oficial** (pré-lançamento). Ver [ALTERNATIVAS_GUNBOUND.md](ALTERNATIVAS_GUNBOUND.md).
+
+- [x] Pesquisar alternativas que ofereçam **mecânica Thor do Aduka**, não apenas sprite/nome.
+- [x] Auditar código do GunBros versão `49cb4a8`: S2 chama Thor, SS gera três beams; repo sem LICENSE identificado.
+- [ ] Playtest DragonBound no navegador e benchmarking qualitativo.
+- [ ] Teste GunBros original no sandbox de desenvolvimento Windows isolado (não foi instalado).
+- [ ] Decidir motor com critério de fidelidade e licenças antes de qualquer importação pública.
