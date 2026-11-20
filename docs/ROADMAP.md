@@ -71,8 +71,9 @@
 - [x] Empacotar Guntanks original via fonte SHA fixada: HTML, CSS, JS original e assets essenciais em `/labs/guntanks/`.
 - [x] Preservar Craterfall, único jogo publicado e validado anteriormente.
 - [x] Corrigir home para jogo local, sem links de demos de terceiros fingindo deploy.
-- [ ] Validar CI e build final com testes da home e do Guntanks.
-- [ ] Publicar `/labs/guntanks/` e a home corrigida via SSH com rollback; confirmar HTTP 200 e jogo carregado no navegador.
+- [x] Validar CI e build final com testes da home e do Guntanks: execução 44651506977 com dois jobs aprovados, SHA 22a5163.
+- [x] Publicar `/labs/guntanks/` e atualizar home via SSH com backup e verificações HTTP 200 (log real de 20/11/2026, `HOVER_SHOT_GUNTANKS_PUBLICADO`).
+- [ ] QA real no navegador: movimentação, ângulo, tiro 1/2/SS, terreno, turnos, áudio, console e telas mobile. HTTP 200 **não** equivale a jogabilidade aprovada.
 - [ ] Planejar integração fiel do Rembound mantendo o original, retirando dependência obrigatória de SpacetimeDB antes de anunciar jogabilidade.
 - [ ] Verificar licença ou solicitar autorização para redistribuir Artillery e Scorched Tanks; sem direitos não copiar ao nosso domínio.
 - [ ] OpenBound: avaliar port browser com assets autorizados; não divulgar como executável antes da prova.

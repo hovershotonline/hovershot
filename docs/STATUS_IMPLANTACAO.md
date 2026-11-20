@@ -35,3 +35,11 @@ O proprietário executou auditoria somente leitura: `PUBLIC_HTML=VALIDADO`, modo
 ## Correção de objetivo após reclamação do proprietário — 2026-11-19
 
 **Erro da versão anterior:** home continha links externos dos autores, em vez de cópias executáveis no próprio domínio. O proprietário rejeitou esse comportamento. `main` foi alterada para permitir botão jogar somente em `/labs/guntanks/` e `/labs/craterfall/`; as outras bases permanecem no catálogo, mas sem botão falso de jogo. **Guntanks original foi empacotado a partir do submódulo versionado**, com HTML, CSS, JS bundle e nove assets de runtime. Foi identificado build Guntanks bem-sucedido no Actions (run 44651072472); publicar no servidor ainda pendente. Artillery e Scorched sem licença explícita, OpenBound desktop, Rembound com backend SpacetimeDB. Ver `IMPORTACAO_LOCAL.md`.
+
+## Deploy efetivo do Guntanks original — 2026-11-20 (horário de Brasília)
+
+**EVIDÊNCIA DE EXECUÇÃO REAL:** log PowerShell/SSH enviado pelo proprietário (`Texto colado(20261120-011654).txt`). Confirmados `BUILD_SOURCE_SHA=22a5163521f0da3d933a89429dffffdcf6466c62`, `GUNTANKS_ORIGINAL=INCLUIDO`, `BACKUP_HOME=VALIDADO`, `GUNTANKS=INSTALADO`, `HOME=ATUALIZADA` e `CRATERFALL=INALTERADO`.
+
+As verificações HTTP no domínio `hovershot.online` retornaram **200** para home, `/labs/guntanks/index.html`, JavaScript do Guntanks, CSS do Guntanks e `/labs/craterfall/index.html`, cada qual com marcador de conteúdo identificado (`VALIDACAO_*=PUBLICO_OK`). Final do SSH: `RESULTADO=HOVER_SHOT_GUNTANKS_PUBLICADO` e `SSH_EXECUCAO=CONCLUIDA`. O script registrou `ENV_PRIVADO=INALTERADO`, `BANCO_MYSQL=INALTERADO`, `OUTROS_DOMINIOS=INALTERADOS`.
+
+**Estado:** dois laboratórios com arquivos reais instalados no mesmo domínio. **Ainda falta QA visual e funcional** em navegador de usuário (renderização de imagens/terreno, movimento, tiros 1/2/SS, áudio, troca de turnos e reinício), pois o log HTTP 200 não executa JavaScript. Não afirmar que jogabilidade está validada. Não confundir os demais quatro projetos apenas referenciados por submódulos com jogos hospedados.

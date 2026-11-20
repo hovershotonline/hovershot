@@ -6,7 +6,7 @@ O proprietário determinou que **jogar** significa abrir arquivos reais do proje
 
 | Projeto | Rota local | Estado técnico |
 |---|---|---|
-| **Guntanks** | `/labs/guntanks/` | Importado e compilado com gameplay, bundle e assets originais necessários, fonte `masag0/Guntanks` no commit `072c2312abec19089149c211751ffec7311d69d4`. Publicação remota a validar. |
+| **Guntanks** | `/labs/guntanks/` | Importado e compilado com gameplay, bundle e assets originais necessários, fonte `masag0/Guntanks` no commit `072c2312abec19089149c211751ffec7311d69d4`. **Publicado via SSH em 20/11/2026**, arquivos da home e runtime com HTTP 200; QA de jogabilidade no navegador pendente. |
 | **Craterfall** | `/labs/craterfall/` | Importado integralmente sob MIT; site anterior confirmado com HTTP 200 pelo proprietário. |
 | Rembound | — | Fonte preservada em submódulo, licença MIT. Precisa de Next.js + SpacetimeDB; **não jogável apenas com arquivos estáticos**. |
 | Artillery P2P | — | Fonte preservada por submódulo, **licença de redistribuição não identificada**. Não copiar para webroot sem autorização. |
