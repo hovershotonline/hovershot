@@ -17,3 +17,7 @@
 ## Verificação adicional
 
 Run GitHub Actions **44640749276**: `success`. Branch `site-build` verificada, com `index.html`, `labs/craterfall/index.html`, `labs/craterfall/LICENSE`, sem sourcemaps ou `.env`. O deploy na Hostinger **ainda não foi executado**.
+
+## Inventário SSH de pré-deploy — 2026-11-19
+
+O proprietário executou auditoria somente leitura: `PUBLIC_HTML=VALIDADO`, modo `755`; `default.php=ARQUIVO`, **42556 bytes**, modo `644`; `index.html`, `index.php`, `.htaccess`, `.well-known`, `.git` e `.hover-shot-source-commit` ausentes. `ENV_PRIVADO=EXISTE`, modo `600`, `ENV_NA_WEBROOT=NAO`. `RESULTADO=INVENTARIO_CONCLUIDO`. O primeiro deploy **não rodou**, pois se recusou a sobrescrever conteúdo existente. A documentação oficial Hostinger descreve esse `default.php` como página inicial; próximo passo é backup+implantação segura com rollback.
