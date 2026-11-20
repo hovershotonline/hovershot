@@ -1,0 +1,47 @@
+name: Hover Shot — laboratório Render WebSocket
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'services/multiplayer/**'
+      - 'render.yaml'
+      - '.github/workflows/render-multiplayer-ci.yml'
+  pull_request:
+    branches: [main]
+    paths:
+      - 'services/multiplayer/**'
+      - 'render.yaml'
+      - '.github/workflows/render-multiplayer-ci.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  wss-lab-tests:
+    name: Autenticacao, salas e dois jogadores WS (localhost)
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    defaults:
+      run:
+        working-directory: services/multiplayer
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Instalar runtime Node.js sem scripts de terceiros
+        run: npm install --no-audit --no-fund --ignore-scripts
+      - name: Validar sintaxe do backend, UI e suíte
+        run: |
+          node --check server.mjs
+          node --check public/lab.js
+          node --check test/server.test.mjs
+      - name: Autenticar, criar sala e transmitir comandos em WS local
+        run: npm test
+      - name: Conferir separação da hospedagem e variáveis secretas
+        run: |
+          grep -Fq 'rootDir: services/multiplayer' ../../render.yaml
+          grep -Fq 'LAB_ACCESS_TOKEN' ../../render.yaml
+          grep -Fq 'sync: false' ../../render.yaml
+          grep -Fq 'healthCheckPath: /healthz' ../../render.yaml
+          ! grep -Eq 'https://[^[:space:]]+\.onrender\.com' public/lab.js
+          echo 'RESULTADO=RENDER_WS_LAB_CI_OK'
