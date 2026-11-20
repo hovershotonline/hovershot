@@ -30,6 +30,9 @@ test('publicacao e idempotente e valida host e origem de compilacao',()=>{
   assert.match(deploy,/--checksum/);
   assert.doesNotMatch(deploy,/^\s*rsync[^\n]*--delete/m);
   assert.match(deploy,/flock -w 90/);
+  assert.match(deploy,/sort -z > "\$STAGE\/file-list"/);
+  assert.match(deploy,/done < "\$STAGE\/file-list"/);
+  assert.doesNotMatch(deploy,/done < <\(/);
 });
 test('rollback temporario e caminhos restritos ao site',()=>{
   assert.match(deploy,/domains\/hovershot\.online\/public_html/);

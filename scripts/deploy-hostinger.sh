@@ -169,11 +169,12 @@ apply_file(){
   cmp -s "$src" "$dest" || return 55
   echo "ATUALIZADO=$rel"
 }
+find "$STAGE/release" -type f -print0 | LC_ALL=C sort -z > "$STAGE/file-list"
 while IFS= read -r -d '' src; do
   rel="$(realpath --relative-to="$STAGE/release" "$src")"
   [[ "$rel" == ".hover-shot-source-commit" ]] && continue
   apply_file "$rel"
-done < <(find "$STAGE/release" -type f -print0 | LC_ALL=C sort -z)
+done < "$STAGE/file-list"
 apply_file .hover-shot-source-commit
 
 [[ "$(tr -d '\r\n' < "$ROOT/.hover-shot-source-commit")" == "$SHA" ]] || exit 57
