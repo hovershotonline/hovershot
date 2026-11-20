@@ -4,9 +4,9 @@
 - [x] Workflow automático e manual configurado na main, com publicação por SSH após QA.
 - [x] Script de deploy incremental, validação de fingerprint, staging privado, rollback transitório e limpeza implementados no GitHub.
 - [x] CI validou sintaxe, testes de segurança e publicação do artefato (run 44675578673). Job de deploy foi executado, mas **o passo SSH foi ignorado porque o segredo não estava cadastrado**; não houve deploy.
-- [ ] Cadastrar uma única vez `HOVERSHOT_DEPLOY_SSH_PRIVATE_KEY` no GitHub Actions, sem divulgar a chave.
-- [ ] Verificar primeiro deploy real por Actions (marcadores de sucesso, HTTP, Guntanks/Craterfall preservados).
-- [ ] Manter deploy automático nas futuras alterações validadas, respeitando catálogo permanente.
+- [x] Segredo `HOVERSHOT_DEPLOY_SSH_PRIVATE_KEY` cadastrado pelo proprietário; execução SSH real confirmou uso, sem revelar o conteúdo da chave.
+- [x] Primeiro deploy real por GitHub Actions **verificado** (run 44682622785, SHA 22800aa851c4819d52216a3c61981cc54b40ef29; HTTP CSS/JS/Guntanks/Craterfall OK, marcadores SSH e deploy presentes).
+- [x] Deploy automático habilitado em pushes de código da `main`, com gatilhos manuais permitidos; pushes exclusivamente de documentação Markdown dispensados do build para economizar recursos. Catálogo permanente preservado.
 
 ---
 
@@ -18,7 +18,7 @@
 - [x] Adicionar duas ações independentes nos cards hospedados: `Jogar aqui` e `Abrir original`.
 - [x] Criar busca, filtros, ficha técnica em modal e build estático a partir da fonte única.
 - [x] CI do catálogo, testes de links e geração de `site-build` validados (Actions run 44672290910, success).
-- [ ] **Publicar home incrementada na Hostinger** e verificar HTTP, contagem e links, preservando Guntanks, Craterfall, `.env` e MySQL.
+- [x] Home incremental publicada por Actions (run 44682622785; HTTP de home e laboratórios verificado via curl na Hostinger; conteúdo de Hover Shot presente).
 - [ ] Criar e homologar ambientes realmente online para candidatos licenciados à medida que forem autorizados; não é requisito para manter link externo.
 - [ ] Manter versões e histórico no site permanentemente até ordem contrária do usuário.
 

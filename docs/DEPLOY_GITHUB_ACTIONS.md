@@ -4,7 +4,7 @@
 
 ## Comportamento permanente
 
-O workflow `Hover Shot - CI, Build e Deploy` começa em cada push para `main` ou em `workflow_dispatch`. Em pull requests executa testes, mas não publica. O processo é:
+O workflow `Hover Shot - CI, Build e Deploy` começa em pushes para `main` que alterem código/configuração (pushes contendo apenas documentação Markdown em `docs/**` ou arquivos `*.md` não disparam recompilação desnecessária) ou em `workflow_dispatch`. Em pull requests executa testes, mas não publica. O processo é:
 
 1. `build`: testes de combate e de catálogo, auditoria estática do script de deploy, geração da home e dos jogos instalados; artefato GitHub retenção de 7 dias.
 2. `hillshot-multiplayer-qa`: verificação isolada de dois clientes WebSocket em localhost. **Não implica implantação do Hillshot**.
@@ -55,7 +55,11 @@ Se a chave existente estiver protegida por senha/passphrase, o runner não conse
 ## Estado factual vs desejado
 
 - **Implementado no GitHub:** workflow, script, preflight de segurança, staging temporário, restore em falha, testes estáticos.
-- **Pendente de verificação real:** segredo GitHub configurado e prova de deploy SSH para `https://hovershot.online/`, incluindo estado de conexão, HTTP e ausência de efeitos colaterais.
+- **Verificado em produção:** segredo SSH presente (conteúdo não acessível), GitHub Actions run [`44682622785`](https://github.com/hovershotonline/hovershot/actions/runs/44682622785), SHA `22800aa851c4819d52216a3c61981cc54b40ef29`, `build=success`, `hillshot-multiplayer-qa=success`, `preparar-publicacao=success`, `deploy-hostinger=success`. Logs incluíram `RESULTADO=HOVER_SHOT_DEPLOY_ONLINE`, `RESULTADO=GITHUB_ACTIONS_DEPLOY_VALIDADO`, HTTP OK para CSS/JS/Guntanks/Craterfall, `MYSQL=INALTERADO`, `OUTROS_DOMINIOS=INALTERADOS`, `BACKUP_PERMANENTE=NAO`. A verificação foi feita pela própria hospedagem através do script de publicação. O navegador do usuário ainda pode realizar QA visual do catálogo.
 - A publicação manual anterior para Guntanks/Craterfall continua preservada; nenhum commit ou workflow deve apagar o acervo permanente.
 
 **Decisão permanente:** catálogo de versões e link externo de cada jogo mantidos até segunda ordem. Ver [CATALOGO_PERMANENTE.md](CATALOGO_PERMANENTE.md).
+
+## Primeiro deploy real verificado — 20/11/2026
+
+A tentativa inicial da versão `76258050...` foi reexecutada depois de o proprietário cadastrar o segredo SSH; passou do gate de credencial e conectou à Hostinger, mas falhou no shell remoto em `done < <(find...)` por falta de `/dev/fd/63` no CageFS. No commit `22800aa...`, o script foi corrigido para usar lista NUL em arquivo temporário privado, e a execução Actions **44682622785 foi concluída com sucesso**. Os arquivos alterados no host foram `assets/home.css`, `assets/home.js`, `index.html` e `.hover-shot-source-commit`; os dois laboratórios existentes responderam HTTP 200. A branch principal continua sendo a fonte canônica, com deploy incremental e rollback temporário. **Regra permanente:** manter todos os jogos e os links externos no catálogo até nova orientação do proprietário.
