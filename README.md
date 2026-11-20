@@ -1,5 +1,7 @@
 > **CI/CD:** código aprovado em `main` pode gerar e publicar o site na Hostinger por GitHub Actions, após cadastro único do segredo SSH. O workflow verifica o build, o fingerprint, o destino e preserva as versões existentes. Veja [DEPLOY_GITHUB_ACTIONS.md](docs/DEPLOY_GITHUB_ACTIONS.md). Até confirmação de execução SSH, não declarar novo deploy online.
 
+> **Homologacao futura:** [QA multiplayer remoto](docs/QA_MULTIPLAYER_REMOTO.md) prepara a checagem manual HTTPS/WSS, salas e disparos em um servidor externo isolado. **Nao existe ainda backend de multiplayer publicado**; nao confundir teste de localhost com jogo online.
+
 # Hover Shot — catálogo permanente de jogos e versões
 
 **Decisão do proprietário, válida até segunda ordem:** `https://hovershot.online/` deve **sempre** manter várias versões e referências disponíveis na home; o Hover Shot em desenvolvimento é **um dos cards**, não substitui o acervo. Todas as versões têm **link externo do original**, mesmo quando uma cópia local já está instalada. O proprietário escolherá qual base usar só após jogar e comparar. Esta regra prevalece sobre recomendações anteriores de site com jogo único.
