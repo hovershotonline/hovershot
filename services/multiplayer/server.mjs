@@ -158,7 +158,7 @@ export function createLabServer({accessToken,allowLocalOrigin=false}={}){
   function close(){
     clearInterval(heartbeat);
     for(const ws of wss.clients)ws.close(1012,'Service restarting');
-    return new Promise(resolve=>{wss.close(()=>server.close(()=>resolve()));});
+    return new Promise(resolve=>{wss.close(()=>{server.close(()=>resolve());server.closeAllConnections();});});
   }
   return {server,close,rooms,limits:LIMITS};
 }

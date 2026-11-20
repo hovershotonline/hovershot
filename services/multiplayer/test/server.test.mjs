@@ -56,6 +56,7 @@ test('saúde HTTP e interface web isolada sem expor segredo',{timeout:15000},asy
   assert.ok(!(await js.text()).includes(token));
   const missing=await fetch('http://127.0.0.1:'+port+'/secret');
   assert.equal(missing.status,404);
+  await missing.text(); // liberar a conexão keep-alive antes do teardown do servidor
   const denied=connect('https://malicious.example');
   await assert.rejects(denied.open(),/403/);
 });
