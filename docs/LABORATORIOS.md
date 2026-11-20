@@ -1,3 +1,5 @@
+> **STATUS HISTÓRICO:** esta organização de `/labs/` documenta **experimentos de navegador**, não o produto que o proprietário quer construir. A decisão vigente é **Hover Shot como jogo instalável para Windows, com servidor multiplayer próprio**, em [PRODUTO_CANONICO.md](PRODUTO_CANONICO.md). Preservar laboratórios sem tratá-los como produto final.
+
 # Hover Shot — laboratório de versões
 
 **Decisão do proprietário (19/11/2026):** o site `hovershot.online` deve abrir com uma **home que permite escolher entre versões distintas do jogo**. Cada laboratório terá rota própria, ID, estágio de desenvolvimento e regras de isolamento. O proprietário decide em qual experiência entrar, em vez de ficar restrito a um protótipo.

@@ -1,3 +1,5 @@
+> **ARQUIVO DE PESQUISA, NÃO PLANO ATIVO:** após esta investigação, o proprietário esclareceu que **não quer jogar GunBound nem clones pelo navegador** como objetivo. Quer **jogo Hover Shot próprio e multiplayer online com amigos**, preferencialmente via cliente Windows. Ver [PRODUTO_CANONICO.md](PRODUTO_CANONICO.md). Sites/repositórios abaixo são referências históricas, não entregas do produto.
+
 # Hover Shot — alternativas reais após playtest do Rembound
 
 Data: **19/11/2026 (America/Sao_Paulo)**. Estado: **investigação de fontes, não instalação**.

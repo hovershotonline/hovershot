@@ -1,3 +1,16 @@
+> **DECISÃO PRIORITÁRIA DO PROPRIETÁRIO (19/11/2026):** objetivo é **ser dono do jogo Hover Shot e jogar online com amigos**, com **cliente Windows próprio** e servidor sob controle do proprietário, **não jogar GunBound em navegador** nem perseguir clones externos. A documentação obrigatória é [PRODUTO_CANONICO.md](PRODUTO_CANONICO.md). As listas antigas de importar/jogar em `/labs/`, avaliar DragonBound e GunBros são **histórico de pesquisa**, não prioridades ativas.
+
+## Fase vigente — jogo próprio instalável e multiplayer real
+- [x] Corrigir e registrar missão do projeto após manifestação explícita do proprietário.
+- [ ] Auditar reaproveitamento permitido de código atual e decidir cliente/servidor (Godot 4 candidato, não decisão).
+- [ ] Criar estrutura original do cliente Windows, servidor dedicado e protocolo com controle de versões.
+- [ ] Implementar sala privada online 1v1 entre computadores distintos, sistema de turnos e sincronização autoritativa.
+- [ ] Implementar cenário único com física/vento, terreno destrutível, efeitos de disparos e personagem **original** inspirado no gameplay clássico (Aduka/Thor como referência mecânica, não como asset copiado).
+- [ ] Gerar executável Windows via GitHub Actions e operar servidor próprio isolado de outras hospedagens.
+- [ ] Fazer playtest com dois usuários reais e documentar falhas/resultado; avançar para 2v2/8 jogadores somente após validação.
+
+---
+
 > **Histórico importado em 19/11/2026:** material do MEM-GPT-VIOLI. Para decisões atuais de laboratórios e estados de implementação, consulte `docs/LABORATORIOS.md` e `docs/STATUS_IMPLANTACAO.md`. Declarações antigas de que o repo não existe ou não tem permissão são anteriores à conexão da conta proprietária.
 
 # Roadmap — Hover Shot

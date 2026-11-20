@@ -1,3 +1,11 @@
+# Hover Shot — jogo próprio de artilharia multiplayer
+
+**Produto:** cliente instalável Windows + servidor online controlado pelo proprietário, para jogar com amigos. O navegador não é o destino final do jogo. **[Finalidade, requisitos e arquitetura canônica](docs/PRODUTO_CANONICO.md).**
+
+**Situação atual:** o jogo desktop e o servidor dedicado ainda **não foram implementados**; o que existe são laboratórios web de comparação. Não confundir demos de terceiros com o jogo Hover Shot.
+
+---
+
 # Hover Shot — jogos de artilharia instalados no próprio domínio
 
 **Domínio:** https://hovershot.online/ · **GitHub:** https://github.com/hovershotonline/hovershot
