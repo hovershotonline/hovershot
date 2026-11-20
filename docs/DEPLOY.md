@@ -41,3 +41,18 @@ O usuário executou o deploy. O build e backup do `default.php` passaram, o `rsy
 **Recuperação obrigatória:** validar que restou somente o `default.php` original com backup íntegro; corrigir apenas permissões do `public_html` para 755 e do `default.php` para 644; testar HTTP antes de qualquer nova publicação. Se persistir 403, parar para auditar roteamento e logs, sem alterar outros sites. Quando página original estiver legível, publicar `site-build` com `rsync -a --chmod=D755,F644`, verificar modos e URLs diretas (`/index.html`, CSS, JS e LAB01), só remover o `default.php` quando tudo funcionar e verificar a home `/`; rollback em falha, incluindo restaurar a permissão do diretório raiz. Não usar `--delete`.
 
 **Status:** aguardando novo comando do usuário, sem deploy efetivo.
+
+## Publicação incremental do catálogo de projetos originais (19/11/2026)
+
+O deploy anterior **foi bem-sucedido**, segundo a saída do proprietário: HTTP 200 para `/index.html`, CSS, JS, `/labs/craterfall/index.html`, `/` e `/labs/craterfall/`, `RESULTADO=HOVER_SHOT_PUBLICADO_E_VALIDADO`; `public_html` foi corrigido para modo 755, arquivos 644, `.env` fora da webroot permaneceu privado. A instrução histórica "deploy pendente" acima refere-se à etapa *anterior* a essa evidência.
+
+**Nova alteração:** home atualizada para seis projetos e cinco submódulos Git de fontes originais. O código do Craterfall não deve ser reinstalado. Requisitos do próximo deploy:
+1. SSH somente para `/home/u415074840/domains/hovershot.online/public_html`; validar conta, diretório 755, `.env` privado 600 e marcador de origem `.hover-shot-source-commit` SHA40.
+2. Clonar somente `site-build` em `/home/u415074840/domains/_backups_todos_sites/hovershot.online/.deploy-catalog.*` temporário privado, com lock `flock`. Validar seis nomes no HTML, CSS/JS e ausência de secrets.
+3. Guardar cópias privadas **temporárias** dos quatro arquivos existentes: `index.html`, `assets/home.css`, `assets/home.js`, `.hover-shot-source-commit`.
+4. Substituir **apenas** esses quatro arquivos por `install -m 644`, sem `rsync --delete` e sem alterar `labs/craterfall/` ou outros domínios.
+5. Verificar HTTP público e, se necessário, origem, conteúdo Rembound/Guntanks, CSS, JS e caminho local do Craterfall. Rollback dos quatro arquivos se a origem não servir corretamente, registrando resultado.
+6. Se o público mostrar conteúdo antigo mas a origem mostrar o novo, reportar cache/propagação; não apagar jogo nem banco. Limpar temporários após validação. Código/rollback durável continua no GitHub, não acumular backups operacionais.
+7. **Não hospedar os cinco jogos externos**: navegação deve encaminhar à demo **original dos autores**, deixando claros links cujo funcionamento não foi verificado em tempo real. OpenBound abre repositório, não um jogo web inexistente.
+
+**Estado:** instrução documentada; publicação incremental depende da execução SSH pelo proprietário e de evidência HTTP real.
