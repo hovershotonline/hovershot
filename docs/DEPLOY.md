@@ -23,3 +23,11 @@ Não mudar conexão GitHub global do hPanel sem conferir os demais sites no plan
 - A branch `site-build` muda automaticamente ao passar a CI, mas isso **não implica deploy Hostinger**. A sincronização com `public_html` precisa ser configurada separadamente.
 - Para manter o armazenamento sob controle, o build de produção não inclui sourcemaps nem arquivos de código TypeScript; a licença MIT é preservada.
 - Nenhum banco novo foi criado para o Craterfall local. O banco `u415074840_hovershot` existente permanece reservado ao backend futuro.
+
+## Inventário remoto e estratégia aprovada para primeiro deploy — 2026-11-19
+
+Saída real do SSH recebida do proprietário: `public_html` tem **somente `default.php` (42556 bytes, modo 644)**. Não contém `index.html`, `index.php`, `.htaccess`, `.well-known`, `.git` ou marcador do Hover Shot. `public_html` é modo 755; `.env` existe **fora** da webroot, modo 600. **Nenhuma alteração de arquivo ou banco ocorreu no inventário.** O deploy anterior parou com `INSTALACAO_PRESERVADA_REQUER_INVENTARIO`, antes de copiar arquivos.
+
+O suporte oficial Hostinger descreve `default.php` como a página *Coming soon/You Are All Set to Go!*, geralmente único arquivo inicial: https://www.hostinger.com/support/5811527-the-website-shows-a-you-are-all-set-to-go-message/ . Ainda assim, **o próximo SSH Deploy verificará assinatura Hostinger e o estado exato de um só arquivo**; se não coincidir, parará sem substituição.
+
+**Procedimento seguro:** baixar apenas a branch `site-build` para temporário privado autorizado sob `/home/u415074840/domains/_backups_todos_sites/hovershot.online/`; validar build, paths, licença, ausência de segredos e symlinks; criar backup único `default.php.original` antes de modificar a webroot; transferir apenas artefatos estáticos, sem `rsync --delete`, remover a página padrão depois de copiada; validar conteúdo e HTTP da home e LAB 01; em erro, remover apenas os diretórios/arquivos introduzidos e restaurar o `default.php` a partir do backup. Não alterar outros domínios ou o banco. **Deploy ainda pendente de execução pelo proprietário.**
