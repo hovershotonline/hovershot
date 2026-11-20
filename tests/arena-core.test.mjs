@@ -1,0 +1,10 @@
+import test from 'node:test';import assert from 'node:assert/strict';
+import {MOBILES,WORLD,createMatch,launch,stepMatch,setAim,selectWeapon,toggleDual,movePlayer,makeTerrain,skipTurn} from '../site/labs/arena/core.js';
+test('mobiles originais: Aduka incluido, quatro modelos com tres tiros',()=>{assert.equal(MOBILES.length,4);assert.equal(MOBILES[0].id,'aduka');assert.ok(MOBILES.every(m=>m.shots.length===3));});
+test('terreno depende so da seed',()=>{assert.deepEqual(makeTerrain(42),makeTerrain(42));assert.notDeepEqual(makeTerrain(42),makeTerrain(43));});
+test('aduka dispara tres tiros no T2, dual gera seis',()=>{const m=createMatch();assert.ok(selectWeapon(m,1));assert.ok(toggleDual(m));assert.ok(launch(m));assert.equal(m.shells.length,6);assert.equal(m.phase,'flight');});
+test('SS e dual sao mutuamente exclusivos e SS tem janela de disponibilidade',()=>{const m=createMatch();assert.equal(selectWeapon(m,2),false);m.turn=3;assert.equal(selectWeapon(m,2),true);assert.equal(toggleDual(m),false);});
+test('mesma seed e mesmas entradas resultam no mesmo estado final',()=>{const a=createMatch({seed:744}),b=createMatch({seed:744});for(const state of [a,b]){setAim(state,51,84);selectWeapon(state,1);launch(state);for(let i=0;i<1500&&state.phase!=='aim'&&state.phase!=='over';i++)stepMatch(state);}assert.equal(a.turn,b.turn);assert.deepEqual(a.terrain,b.terrain);assert.deepEqual(a.players,b.players);assert.equal(a.wind,b.wind);});
+test('movimento so no turno e respeita distancia maxima',()=>{const m=createMatch();assert.ok(movePlayer(m,12));assert.equal(movePlayer(m,50),false);assert.ok(launch(m));assert.equal(movePlayer(m,1),false);});
+test('todos os disparos concluem em tempo finito, o turno avanca',()=>{const m=createMatch({seed:8});launch(m);for(let i=0;i<1200&&m.phase!=='aim'&&m.phase!=='over';i++)stepMatch(m);assert.equal(m.turn,2);});
+test('skip do turno',()=>{const m=createMatch();assert.ok(skipTurn(m));stepMatch(m);assert.equal(m.turn,2);assert.equal(m.active,1);});
