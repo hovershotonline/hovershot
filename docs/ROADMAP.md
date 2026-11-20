@@ -77,3 +77,14 @@
 - [ ] Planejar integração fiel do Rembound mantendo o original, retirando dependência obrigatória de SpacetimeDB antes de anunciar jogabilidade.
 - [ ] Verificar licença ou solicitar autorização para redistribuir Artillery e Scorched Tanks; sem direitos não copiar ao nosso domínio.
 - [ ] OpenBound: avaliar port browser com assets autorizados; não divulgar como executável antes da prova.
+
+## Prioridade imediata — avaliação integral do Rembound (19/11/2026)
+
+**Pedido atual do proprietário:** quer Rembound real, e não apenas Guntanks ou links para demos. Antes da adaptação do projeto, executar o cliente Next.js e o módulo SpacetimeDB **localmente** para poder explorar os 11 mobiles (incluindo Aduka), lobby, treino, salas e combate.
+
+- [x] Conferir a fonte original `remcostoeten/Gunbound` no commit `3e807036f444d006d89050c3f89802ed082d9115`, licença MIT.
+- [x] Auditar dependências do código: Bun + Next.js 15 + SpacetimeDB 2.2. O módulo atualmente é **TypeScript** em `server/spacetimedb/src/` (README com menção a Rust está desatualizado).
+- [x] Documentar configuração local de websocket e publicação de módulo isolado; ver [REMBOUND_TESTE_LOCAL.md](REMBOUND_TESTE_LOCAL.md).
+- [ ] Validar instalação efetiva de Bun, CLI SpacetimeDB, módulo local e frontend no Windows do proprietário.
+- [ ] Executar QA no navegador com autenticação local, treino contra bot, Aduka, lobby e disparos.
+- [ ] Somente depois avaliar publicação própria sob Hover Shot, respeitando componentes persistentes e direitos dos assets. `public_html` estático não executa o backend SpacetimeDB.
