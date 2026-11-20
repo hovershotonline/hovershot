@@ -35,7 +35,7 @@ Os artefatos vêm da branch `site-build` depois do CI. A atualização do catál
 - [x] Decisão permanente do proprietário documentada.
 - [x] Catálogo declarado como dado único com 13 opções, fontes e links externos.
 - [x] Teste automatizado de links independentes e de apenas dois labs hospedados incluído.
-- [ ] Homologação da home compilada pelo GitHub Actions no commit atual.
+- [x] Home compilada, teste de 13 cards/links e publicação da branch `site-build` verificados no GitHub Actions (run `44672290910`, conclusão `success`, SHA `e17f249bc4df2c9e54823f82113b2aa1e0ce7964`).
 - [ ] Publicação da home ampliada em `hovershot.online` verificada por HTTP real e marcador de origem.
 - [ ] Avaliação das opções pelo usuário e posterior escolha de motor, sem remover o catálogo.
 

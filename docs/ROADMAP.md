@@ -5,7 +5,7 @@
 - [x] Criar card fixo para Hover Shot em desenvolvimento, sem anunciar motor selecionado.
 - [x] Adicionar duas ações independentes nos cards hospedados: `Jogar aqui` e `Abrir original`.
 - [x] Criar busca, filtros, ficha técnica em modal e build estático a partir da fonte única.
-- [ ] Validar CI do catálogo, testes de links e geração de `site-build`.
+- [x] CI do catálogo, testes de links e geração de `site-build` validados (Actions run 44672290910, success).
 - [ ] **Publicar home incrementada na Hostinger** e verificar HTTP, contagem e links, preservando Guntanks, Craterfall, `.env` e MySQL.
 - [ ] Criar e homologar ambientes realmente online para candidatos licenciados à medida que forem autorizados; não é requisito para manter link externo.
 - [ ] Manter versões e histórico no site permanentemente até ordem contrária do usuário.
