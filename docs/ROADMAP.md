@@ -4,7 +4,7 @@
 
 - [x] Corrigir requisitos: browser only, domínio Hover Shot, partida online com amigos.
 - [x] Inspecionar Hillshot com cliente web + WebSocket autoritativo, MIT, assets Kenney CC0.
-- [ ] Importar código Hillshot no GitHub e validar CI smoke de dois clientes na mesma sala.
+- [x] Importar código Hillshot via submódulo no GitHub e validar smoke WS de dois clientes na mesma sala + tiro. Job aprovado no Actions 44661916212, SHA 6d4b0b34957eb7d6383b88ad986620ffb5ca688b.
 - [ ] Prover servidor WSS persistente próprio (Cloud Startup não aceita WS inbound); adaptar endpoint para domínio controlado.
 - [ ] Servir jogo em `https://hovershot.online/play/`, testando dois jogadores em redes distintas.
 - [ ] Auditar segurança, reconexão, limites, cargas e retenção e comparar experiência de combate GunBound antes do refinamento.

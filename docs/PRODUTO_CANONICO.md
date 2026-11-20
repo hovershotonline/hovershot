@@ -24,7 +24,7 @@ A [Hostinger informa](https://www.hostinger.com/support/hostinger-node-js-limits
 
 - [x] Confirmado objetivo somente navegador e domínio Hover Shot.
 - [x] Licença MIT do Hillshot e licença CC0 de sprites Kenney conferidas; código multiplayer inspecionado.
-- [ ] CI de integração: materializar o código fixado e testar duas conexões WebSocket criando sala e disparando.
+- [x] CI de integração: submódulo fixado e **2 clientes WebSocket simulados no runner**, criação de sala, início e tiro replicado. Job `Engine web - 2 jogadores e tiro (WS localhost)` no run 44661916212 — **success**. Não é teste humano nem deploy.
 - [ ] Verificar backend persistente, WSS/TLS e isolamento das rotas no domínio.
 - [ ] Executar playtest real entre duas pessoas pela internet e validar reconexão/segurança.
 - [ ] Adaptar engine, UI e comportamento do jogo conforme testes, preservando atribuições de licenças.
