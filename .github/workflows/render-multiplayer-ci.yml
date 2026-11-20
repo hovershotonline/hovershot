@@ -36,7 +36,7 @@ jobs:
           node --check public/lab.js
           node --check test/server.test.mjs
       - name: Autenticar, criar sala e transmitir comandos em WS local
-        run: npm test
+        run: timeout 70s npm test
       - name: Conferir separação da hospedagem e variáveis secretas
         run: |
           grep -Fq 'rootDir: services/multiplayer' ../../render.yaml

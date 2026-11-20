@@ -40,7 +40,7 @@ async function auth(client,name){
   client.send({type:'auth',token,name});
   return client.next(x=>x.type==='authenticated');
 }
-test('saúde HTTP e interface web isolada sem expor segredo',async t=>{
+test('saúde HTTP e interface web isolada sem expor segredo',{timeout:15000},async t=>{
   const {port,connect}=await start(t);
   const health=await fetch('http://127.0.0.1:'+port+'/healthz');
   assert.equal(health.status,200);
@@ -59,14 +59,14 @@ test('saúde HTTP e interface web isolada sem expor segredo',async t=>{
   const denied=connect('https://malicious.example');
   await assert.rejects(denied.open(),/403/);
 });
-test('autenticação errada não autoriza salas',async t=>{
+test('autenticação errada não autoriza salas',{timeout:15000},async t=>{
   const {connect}=await start(t);
   const c=connect();await c.open();
   c.send({type:'auth',name:'Visitante',token:'segredo-errado'});
   const [code]=await once(c.ws,'close');
   assert.equal(code,4001);
 });
-test('2 jogadores: criar sala, entrar, alternar turnos e impedir terceiro',async t=>{
+test('2 jogadores: criar sala, entrar, alternar turnos e impedir terceiro',{timeout:15000},async t=>{
   const {connect,lab}=await start(t);
   const a=connect(),b=connect(),c=connect();
   const aa=await auth(a,'Alice');const bb=await auth(b,'Bob');await auth(c,'Carol');
@@ -100,7 +100,7 @@ test('2 jogadores: criar sala, entrar, alternar turnos e impedir terceiro',async
   await a.next(x=>x.type==='left_room');
   assert.equal(lab.rooms.size,0);
 });
-test('limite por conexão encerra excesso de mensagens',async t=>{
+test('limite por conexão encerra excesso de mensagens',{timeout:15000},async t=>{
   const {connect}=await start(t);
   const c=connect();await auth(c,'Limite');
   for(let i=0;i<30;i++)if(c.ws.readyState===WebSocket.OPEN)c.send({type:'ping',clientSentAt:i});
