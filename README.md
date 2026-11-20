@@ -1,28 +1,28 @@
-# Hover Shot — catálogo de jogos de artilharia
-**Domínio:** https://hovershot.online/ · **Repositório:** https://github.com/hovershotonline/hovershot
+# Hover Shot — jogos de artilharia instalados no próprio domínio
 
-**Objetivo atual:** comparar **versões originais** de projetos de artilharia existentes no navegador, antes de desenvolver/modificar o jogo próprio. A home oferece seis projetos distintos:
+**Domínio:** https://hovershot.online/ · **GitHub:** https://github.com/hovershotonline/hovershot
 
-| Projeto | Experiência | Local de execução |
+O proprietário determinou que **jogar** significa abrir arquivos reais do projeto no domínio `hovershot.online` — **não** atalhos para o jogo dos autores. A home identifica claramente o que está hospedado e o que ainda não pode ser executado localmente.
+
+| Projeto | Rota local | Estado técnico |
 |---|---|---|
-| **Rembound** | [Abrir demo do autor](https://gunbound.remcostoeten.nl/) | Externo, SpacetimeDB; disponibilidade ainda não confirmada |
-| **Guntanks** | [Jogar original](https://masag0.github.io/Guntanks/) | GitHub Pages do autor |
-| **Artillery P2P** | [Jogar original](https://lettfeti.github.io/artillery/) | GitHub Pages do autor; PeerJS externo |
-| **Scorched Tanks** | [Abrir jogo original](https://whorn76.github.io/scorched-tanks/) | GitHub Pages do autor; disponibilidade ainda não confirmada |
-| **Craterfall** | [/labs/craterfall/](https://hovershot.online/labs/craterfall/) | Versão MIT construída no Hover Shot |
-| **OpenBound** | [Abrir repositório](https://github.com/WickedPeanuts/OpenBound) | Desktop .NET/MonoGame, **não é jogo de navegador** |
+| **Guntanks** | `/labs/guntanks/` | Importado e compilado com gameplay, bundle e assets originais necessários, fonte `masag0/Guntanks` no commit `072c2312abec19089149c211751ffec7311d69d4`. Publicação remota a validar. |
+| **Craterfall** | `/labs/craterfall/` | Importado integralmente sob MIT; site anterior confirmado com HTTP 200 pelo proprietário. |
+| Rembound | — | Fonte preservada em submódulo, licença MIT. Precisa de Next.js + SpacetimeDB; **não jogável apenas com arquivos estáticos**. |
+| Artillery P2P | — | Fonte preservada por submódulo, **licença de redistribuição não identificada**. Não copiar para webroot sem autorização. |
+| Scorched Tanks | — | Fonte preservada por submódulo, **licença de redistribuição não identificada**. Não copiar para webroot sem autorização. |
+| OpenBound | — | Projeto em C#/MonoGame com servidores separados e pacote gráfico ausente; **não é um cliente web**. |
 
-Cinco repositórios originais são **referenciados integralmente por submódulos Git congelados em SHA** em `sources/originals/`, com a lista em `.gitmodules`. A referência não redistribui os conteúdos dos autores; ninguém modificou seus jogos nesta fase. O Craterfall (MIT) foi importado em `labs/craterfall/` e já executado no site.
+## Guntanks instalado do código do autor
+- `sources/originals/guntanks`: submódulo **congelado em commit** que permite materializar a fonte integral do autor.
+- `scripts/package-guntanks.mjs`: importa `index.html`, `styles.css`, bundle JavaScript já compilado e os **nove recursos de runtime** utilizados pelo jogo.
+- Artefatos publicados em `dist/labs/guntanks/`, sem source maps; apenas link de retorno ao Hover Shot foi acrescentado ao HTML.
+- Removidos do pacote arquivos não necessários: imagens explicitamente nomeadas `gunbound_icons`, screenshots, arquivos PSD, fontes originais redundantes, `bundle.js.map` e dependências Node de build antigas.
+- O `package.json` original declara licença `ISC`; **não há LICENSE separado** no repositório; antes de reutilizar assets para um produto derivado, confirmar autoria/licenciamento de cada recurso. Nesta fase são itens de runtime do jogo de referência, não elementos oficiais de GunBound.
 
-Para desenvolver: Node 22+, `npm install`, `npm test`, `npm run test:catalog` e `npm run build`. O build produz **somente** a home, assets próprios e Craterfall em `dist/`; GitHub Actions atualiza `site-build` após testes. A publicação na Hostinger segue [docs/DEPLOY.md](docs/DEPLOY.md) e não é automática.
+## Build e publicação
+Requer Node.js 22+, `git submodule update --init --depth 1 sources/originals/guntanks`, `npm install`, `npm run test:catalog`, `npm test`, `npm run build`. O GitHub Actions materializa somente esse submódulo durante o build. O build é estático: `dist/index.html`, `dist/labs/guntanks/index.html`, `dist/labs/craterfall/index.html`. `site-build` contém o pacote para a Hostinger; publicar via SSH com preflight, modo 755/644, backup e rollback.
 
-**Não criar banco por projeto sem necessidade:** o MySQL já existente `u415074840_hovershot` está pronto para os próximos passos, mas os testes originais desta etapa não exigem novo banco.
+O banco MySQL da Hostinger não é utilizado por esses jogos locais. Não copiar `.env` nem chaves à webroot. Não alterar outros domínios da hospedagem.
 
-## Documentação canônica
-- [Acervo de projetos originais e licenças](docs/PROJETOS_ORIGINAIS.md)
-- [Arquitetura dos laboratórios](docs/LABORATORIOS.md)
-- [Situação real de deploy](docs/STATUS_IMPLANTACAO.md)
-- [Roadmap](docs/ROADMAP.md)
-- [Plano de publicação SSH](docs/DEPLOY.md)
-
-**Produto de longo prazo:** combate online de 1v1 a 4v4, vários mobiles incluindo Aduka, tiros 1/2/SS, Dual, Thor, vento, terreno destrutível, ações determinísticas e backend econômico na Hostinger. Estes itens **não devem ser confundidos** com o estado das demos originais.
+Documentação canônica: [LABORATORIOS.md](docs/LABORATORIOS.md), [PROJETOS_ORIGINAIS.md](docs/PROJETOS_ORIGINAIS.md), [STATUS_IMPLANTACAO.md](docs/STATUS_IMPLANTACAO.md), [DEPLOY.md](docs/DEPLOY.md), [ROADMAP.md](docs/ROADMAP.md).

@@ -31,3 +31,7 @@ O proprietário executou auditoria somente leitura: `PUBLIC_HTML=VALIDADO`, modo
 **Evidência real do deploy anterior:** log do proprietário confirmou `HTTP_INDEX=200`, `HTTP_CSS=200`, `HTTP_JS=200`, `HTTP_LAB01=200`, `HTTP_HOME=200`, `HTTP_JOGO=200`, `RESULTADO=HOVER_SHOT_PUBLICADO_E_VALIDADO` na Hostinger, com `public_html` 755 e `.env` privado preservado. O catálogo de seis opções, por sua vez, **ainda não foi publicado no domínio nesta operação**. Ver [PROJETOS_ORIGINAIS.md](PROJETOS_ORIGINAIS.md).
 
 **Observação de disponibilidade:** as páginas do Guntanks e Artillery P2P foram consultadas no navegador de pesquisa; o acesso em tempo real às demos Rembound e Scorched Tanks não pôde ser confirmado por esse meio. Não prometer que estão online a todo momento.
+
+## Correção de objetivo após reclamação do proprietário — 2026-11-19
+
+**Erro da versão anterior:** home continha links externos dos autores, em vez de cópias executáveis no próprio domínio. O proprietário rejeitou esse comportamento. `main` foi alterada para permitir botão jogar somente em `/labs/guntanks/` e `/labs/craterfall/`; as outras bases permanecem no catálogo, mas sem botão falso de jogo. **Guntanks original foi empacotado a partir do submódulo versionado**, com HTML, CSS, JS bundle e nove assets de runtime. Foi identificado build Guntanks bem-sucedido no Actions (run 44651072472); publicar no servidor ainda pendente. Artillery e Scorched sem licença explícita, OpenBound desktop, Rembound com backend SpacetimeDB. Ver `IMPORTACAO_LOCAL.md`.

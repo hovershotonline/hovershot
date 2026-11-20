@@ -65,3 +65,14 @@
 - [ ] Implementar multiplayer próprio só após escolha da base; não anunciar protótipos como projetos originais.
 
 **Estado verificável:** fonte de referência importada por Gitlinks, jogos terceiros ainda rodam nos sites dos autores e não em `hovershot.online`; nenhuma nova base SQL foi provisionada.
+
+## Correção de escopo: importar código realmente executável (19/11/2026)
+- [x] Identificar que submódulos + links externos **não** eram importações jogáveis.
+- [x] Empacotar Guntanks original via fonte SHA fixada: HTML, CSS, JS original e assets essenciais em `/labs/guntanks/`.
+- [x] Preservar Craterfall, único jogo publicado e validado anteriormente.
+- [x] Corrigir home para jogo local, sem links de demos de terceiros fingindo deploy.
+- [ ] Validar CI e build final com testes da home e do Guntanks.
+- [ ] Publicar `/labs/guntanks/` e a home corrigida via SSH com rollback; confirmar HTTP 200 e jogo carregado no navegador.
+- [ ] Planejar integração fiel do Rembound mantendo o original, retirando dependência obrigatória de SpacetimeDB antes de anunciar jogabilidade.
+- [ ] Verificar licença ou solicitar autorização para redistribuir Artillery e Scorched Tanks; sem direitos não copiar ao nosso domínio.
+- [ ] OpenBound: avaliar port browser com assets autorizados; não divulgar como executável antes da prova.
