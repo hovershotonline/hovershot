@@ -1,3 +1,5 @@
+> **MECANISMO ATUALIZADO (20/11/2026):** configurar **deploy automático por GitHub Actions SSH**, diretamente depois de build e QA. A instalação da credencial `HOVERSHOT_DEPLOY_SSH_PRIVATE_KEY` depende do proprietário; sem ela, job gera aviso e não altera servidor. Usar [DEPLOY_GITHUB_ACTIONS.md](DEPLOY_GITHUB_ACTIONS.md) como procedimento vigente. As instruções históricas de deploy PowerShell abaixo são fallback, não procedimento principal. O script preserva arquivos existentes e não acumula backups no host.
+
 > **ATUALIZAÇÃO DE PUBLICAÇÃO (20/11/2026):** A home é um **catálogo permanente**. Para atualizar 13 versões **não substituir nem excluir** `/labs/guntanks/` ou `/labs/craterfall/`. Publicar apenas `index.html`, `assets/home.css`, `assets/home.js` e `.hover-shot-source-commit` da branch compilada `site-build`; validar SHA, URLs, links externos, HTTP, permissões e rollback. Scripts e temporários somente no caminho autorizado da Hostinger, apagar ao final. A branch `site-build` é um build, não uma publicação automática no host. Ver [CATALOGO_PERMANENTE.md](CATALOGO_PERMANENTE.md).
 
 # Publicação segura — Hover Shot

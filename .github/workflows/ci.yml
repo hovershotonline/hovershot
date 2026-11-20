@@ -1,4 +1,4 @@
-name: Hover Shot - Build dos laboratorios
+name: Hover Shot - CI, Build e Deploy
 on:
   push:
     branches: [main]
@@ -29,6 +29,10 @@ jobs:
         run: npm run test:catalog
       - name: Validar script de importação
         run: node --check scripts/package-guntanks.mjs
+      - name: Validar configuracao e script de deploy (sem credenciais)
+        run: |
+          bash -n scripts/deploy-hostinger.sh
+          node --test tests/deploy-config.test.mjs
       - name: Compilar hub e jogos locais
         run: npm run build
       - name: Verificar artefatos

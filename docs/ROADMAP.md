@@ -1,3 +1,15 @@
+> **DEFINIÇÃO DE DEPLOY (20/11/2026):** o GitHub Actions agora possui job `deploy-hostinger`, após `build` + `hillshot-multiplayer-qa` + `preparar-publicacao`. O deploy automático só opera após cadastro do segredo SSH (não acessível ao conector GitHub do ChatGPT). Ação em `main` deve poder publicar o site sem comando PowerShell repetido. [Documentação](DEPLOY_GITHUB_ACTIONS.md).
+
+## Entrega CI/CD — acompanhamento
+- [x] Workflow automático e manual configurado na main, com publicação por SSH após QA.
+- [x] Script de deploy incremental, validação de fingerprint, staging privado, rollback transitório e limpeza implementados no GitHub.
+- [ ] CI validar sintaxe, testes de segurança e publicação do artefato, incluindo execução do job novo.
+- [ ] Cadastrar uma única vez `HOVERSHOT_DEPLOY_SSH_PRIVATE_KEY` no GitHub Actions, sem divulgar a chave.
+- [ ] Verificar primeiro deploy real por Actions (marcadores de sucesso, HTTP, Guntanks/Craterfall preservados).
+- [ ] Manter deploy automático nas futuras alterações validadas, respeitando catálogo permanente.
+
+---
+
 > **DECISÃO DO PROPRIETÁRIO — 20/11/2026, ATÉ SEGUNDA ORDEM:** `hovershot.online` manterá **catálogo permanente de múltiplas versões**; a versão Hover Shot em desenvolvimento será uma opção da lista, mesmo após escolha do motor. Todos os cards têm link externo do original, inclusive quando a cópia está no site. Projetos sem licença ficam como links externos, não como cópias instaladas. Não remover catálogo em prol de uma única versão. Ver [CATALOGO_PERMANENTE.md](CATALOGO_PERMANENTE.md).
 
 ## Entrega imediata — home das versões

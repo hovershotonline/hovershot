@@ -27,6 +27,10 @@ No primeiro catálogo ampliado: **13 opções**, das quais **2 realmente implant
 
 A seleção não depende de smoke CI local ou de um link do autor. Quando permitido, disponibilizar candidato licenciado em homologação com backend real sob o domínio, testar pelo navegador em redes distintas, analisar menus/arte/jogabilidade/conexão/uso de recursos e colher decisão do usuário. A regra de manter toda a galeria e os links externos continua depois da escolha.
 
+## Publicação automatizada do catálogo
+
+**Decisão de infraestrutura:** novas versões estáticas e home devem ser publicadas por GitHub Actions, sem depender de PowerShell recorrente. O job `deploy-hostinger` só roda após build/QA e usa o segredo SSH cadastrado uma vez pelo proprietário. O script não apaga versões ausentes do build; atualiza arquivos novos/alterados e restaura anteriores se falhar. Ver [DEPLOY_GITHUB_ACTIONS.md](DEPLOY_GITHUB_ACTIONS.md). **Ainda não declarar deploy ativo enquanto não houver execução SSH verificada.**
+
 ## Publicação incremental do catálogo
 
 Os artefatos vêm da branch `site-build` depois do CI. A atualização do catálogo altera **apenas `index.html`, `assets/home.css`, `assets/home.js` e o marcador do commit de origem**. Preservar `/labs/` e todos os serviços e arquivos alheios. Nenhuma alteração no banco. Usar preflight, atualização com rollback temporário, checar SHA, HTTP e conteúdo; remover temporários ao final. A branch compilada não é sinônimo de deploy na Hostinger.
