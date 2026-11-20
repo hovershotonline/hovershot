@@ -10,12 +10,16 @@ jobs:
     runs-on: ubuntu-latest
     timeout-minutes: 8
     steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
       - name: Capturar status, tipos MIME e cache dos recursos reais
         shell: bash
         run: |
           set -Eeuo pipefail
           base="https://hovershot.online"
-          for path in "/" "/assets/home.css" "/assets/home.js" "/assets/playtest-model.mjs"; do
+          for path in "/" "/assets/home.css" "/assets/home.js" "/assets/playtest-model.js"; do
             safe="$(echo "$path" | sed 's,[^a-zA-Z0-9],_,g')"
             url="$base$path?audit=$GITHUB_SHA"
             echo "==== RECURSO=$path ===="
@@ -29,7 +33,7 @@ jobs:
           if grep -Fq '.version-card' "$RUNNER_TEMP/_assets_home_css.body"; then echo "CSS_CARTOES=OK"; else echo "CSS_CARTOES=AUSENTE"; fi
           if grep -Fq '.playtest-summary' "$RUNNER_TEMP/_assets_home_css.body"; then echo "CSS_AVALIACOES=OK"; else echo "CSS_AVALIACOES=AUSENTE"; fi
           if grep -Fq 'id="version-grid"' "$RUNNER_TEMP/_.body"; then echo "HTML_CATALOGO=OK"; else echo "HTML_CATALOGO=AUSENTE"; fi
-          if grep -Fq 'src="/assets/home.js"' "$RUNNER_TEMP/_.body"; then echo "HTML_SCRIPT=OK"; else echo "HTML_SCRIPT=AUSENTE"; fi
+          if grep -Fq 'src="/assets/home.js?v=' "$RUNNER_TEMP/_.body"; then echo "HTML_SCRIPT=OK"; else echo "HTML_SCRIPT=AUSENTE"; fi
       - name: Capturar desktop e mobile no Chromium
         shell: bash
         run: |
@@ -44,6 +48,8 @@ jobs:
             if [[ -s "$RUNNER_TEMP/home-$screen.png" ]]; then echo "SCREENSHOT_$screen=OK"; else echo "SCREENSHOT_$screen=FALHOU"; fi
             grep -iE 'Failed to load|MIME type|Refused to execute|ERR_|script error' "$RUNNER_TEMP/chrome-$screen.log" | head -15 || true
           done
+      - name: Validar layout, filtros e modal com Chromium CDP
+        run: node scripts/qa-home-cdp.mjs
       - uses: actions/upload-artifact@v4
         if: always()
         with:
