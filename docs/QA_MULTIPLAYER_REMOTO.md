@@ -43,3 +43,11 @@ O script verifica HTTP e WSS com TLS, sem flag `--insecure`, envia Bearer apenas
 O workflow remoto so existe para diagnostico sob demanda; nao roda a cada push, nao cria arquivos na Hostinger, nao toca outros sites nem faz polling continuo. O backend de homologacao deve ter tempo de vida definido e limpeza segura de logs temporarios. Fontes, scripts e configuracoes **sem secrets** ficam versionados no GitHub.
 
 **Documentos de autoridade:** [PRODUTO_CANONICO.md](PRODUTO_CANONICO.md), [CATALOGO_PERMANENTE.md](CATALOGO_PERMANENTE.md), [HOMOLOGACAO_ONLINE.md](HOMOLOGACAO_ONLINE.md) e [ROADMAP.md](ROADMAP.md).
+
+## Registro de entrega verificada — 20/11/2026
+
+- PR [#2](https://github.com/hovershotonline/hovershot/pull/2) mesclado na main; commit `b065089acb3d9c050555f69420f336b8e00fdaf2`.
+- CI do PR: [44688903060](https://github.com/hovershotonline/hovershot/actions/runs/44688903060), `conclusion=success`, build e smoke WS localhost aprovados.
+- Publicacao automatica apos merge: [44689019722](https://github.com/hovershotonline/hovershot/actions/runs/44689019722), **4/4 jobs success**. Log do SSH: `RESULTADO=HOVER_SHOT_DEPLOY_ONLINE` e `RESULTADO=GITHUB_ACTIONS_DEPLOY_VALIDADO`; HTTP OK para home CSS/JS, Guntanks e Craterfall; `MYSQL=INALTERADO`, `OUTROS_DOMINIOS=INALTERADOS`, `BACKUP_PERMANENTE=NAO`.
+- Como o bundle publico nao mudou nesta entrega, apenas `.hover-shot-source-commit` foi atualizado na hospedagem. O novo workflow remoto e codigo de QA ficam no GitHub, nao executam na Hostinger.
+- **NAO executado:** teste contra servidor externo WSS, autenticação de homologacao, teste humano em redes distintas. Sem servidor publicado, nenhuma evidência de multiplayer remoto funcional.
