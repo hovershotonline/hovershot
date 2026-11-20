@@ -49,3 +49,19 @@
 
 ## Critério de êxito principal
 **Um comando de tiro validado gera um único evento, e até 8 navegadores obtêm o mesmo estado final, mesmo após recarregar a página.** O Cloud Startup só processa transições de turno e persistência, enquanto cada navegador reproduz animações.
+
+## Marco atual: experiência original antes de adaptação — 19/11/2026
+
+**Decisão do proprietário substitui a prioridade anterior** de desenvolver uma arena própria imediatamente. Primeiro comparar os projetos de terceiros em seu estado original. Ver [PROJETOS_ORIGINAIS.md](PROJETOS_ORIGINAIS.md).
+
+- [x] Publicação inicial de Craterfall e home confirmada por HTTP 200 no SSH, após correção de permissões.
+- [x] Registrar cinco repositórios completos por *submódulos Git* imutáveis por SHA, sem duplicação de fonte/assets no servidor.
+- [x] Converter home em catálogo de seis jogos/projetos: Rembound, Guntanks, Artillery P2P, Scorched Tanks, Craterfall, OpenBound.
+- [x] Abrir demos externas nos endereços dos autores, sem modificar os jogos; diferenciar desktop não executável.
+- [ ] Validar CI de catálogo e branch `site-build` atualizado.
+- [ ] Implantar a home atualizada via SSH Deploy seguro, com backup e sem `rsync --delete`.
+- [ ] Coletar avaliação do usuário de cada demo e disponibilidade real dos links.
+- [ ] Definir quais mecânicas do Rembound (Aduka, 11 mobiles, lobby) podem ser adaptadas ao Hostinger **sem SpacetimeDB**, com licenciamentos e custos documentados.
+- [ ] Implementar multiplayer próprio só após escolha da base; não anunciar protótipos como projetos originais.
+
+**Estado verificável:** fonte de referência importada por Gitlinks, jogos terceiros ainda rodam nos sites dos autores e não em `hovershot.online`; nenhuma nova base SQL foi provisionada.

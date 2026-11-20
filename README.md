@@ -1,32 +1,28 @@
-# Hover Shot — laboratório de artilharia por turnos
+# Hover Shot — catálogo de jogos de artilharia
+**Domínio:** https://hovershot.online/ · **Repositório:** https://github.com/hovershotonline/hovershot
 
-**Site:** [hovershot.online](https://hovershot.online) · **Repositório de desenvolvimento:** [hovershotonline/hovershot](https://github.com/hovershotonline/hovershot).
+**Objetivo atual:** comparar **versões originais** de projetos de artilharia existentes no navegador, antes de desenvolver/modificar o jogo próprio. A home oferece seis projetos distintos:
 
-Este projeto terá **vários laboratórios acessíveis pela home**, com diferentes motores, regras ou modelos de rede. A prioridade é comparar experiências visualmente e escolher a versão que será evoluída em um jogo multiplayer por turnos de até 8 pessoas. **Aduka é requisito do produto, mas não é o único mobile.**
+| Projeto | Experiência | Local de execução |
+|---|---|---|
+| **Rembound** | [Abrir demo do autor](https://gunbound.remcostoeten.nl/) | Externo, SpacetimeDB; disponibilidade ainda não confirmada |
+| **Guntanks** | [Jogar original](https://masag0.github.io/Guntanks/) | GitHub Pages do autor |
+| **Artillery P2P** | [Jogar original](https://lettfeti.github.io/artillery/) | GitHub Pages do autor; PeerJS externo |
+| **Scorched Tanks** | [Abrir jogo original](https://whorn76.github.io/scorched-tanks/) | GitHub Pages do autor; disponibilidade ainda não confirmada |
+| **Craterfall** | [/labs/craterfall/](https://hovershot.online/labs/craterfall/) | Versão MIT construída no Hover Shot |
+| **OpenBound** | [Abrir repositório](https://github.com/WickedPeanuts/OpenBound) | Desktop .NET/MonoGame, **não é jogo de navegador** |
 
-| Laboratório | Rota prevista | Estado | Banco |
-|---|---|---|---|
-| 01 · Craterfall | `/labs/craterfall/` | Fonte importada, build/deploy em validação | Não usa banco (duelo local) |
-| 02 · Turnos Online | A definir | Planejado | Isolamento a decidir na implementação |
-| 03 · Aduka & Mobiles | A definir | Planejado | Isolamento a decidir na implementação |
+Cinco repositórios originais são **referenciados integralmente por submódulos Git congelados em SHA** em `sources/originals/`, com a lista em `.gitmodules`. A referência não redistribui os conteúdos dos autores; ninguém modificou seus jogos nesta fase. O Craterfall (MIT) foi importado em `labs/craterfall/` e já executado no site.
 
-## Construção
+Para desenvolver: Node 22+, `npm install`, `npm test`, `npm run test:catalog` e `npm run build`. O build produz **somente** a home, assets próprios e Craterfall em `dist/`; GitHub Actions atualiza `site-build` após testes. A publicação na Hostinger segue [docs/DEPLOY.md](docs/DEPLOY.md) e não é automática.
 
-Node.js 22 ou mais recente. Na raiz do repositório: `npm install`, `npm test`, `npm run build`. O bundle de publicação será gerado em `dist/`, incluindo `dist/index.html` e `dist/labs/craterfall/index.html`. GitHub Actions valida e armazena o artefato; o deploy Hostinger será configurado separadamente.
+**Não criar banco por projeto sem necessidade:** o MySQL já existente `u415074840_hovershot` está pronto para os próximos passos, mas os testes originais desta etapa não exigem novo banco.
 
-## Licença e crédito
+## Documentação canônica
+- [Acervo de projetos originais e licenças](docs/PROJETOS_ORIGINAIS.md)
+- [Arquitetura dos laboratórios](docs/LABORATORIOS.md)
+- [Situação real de deploy](docs/STATUS_IMPLANTACAO.md)
+- [Roadmap](docs/ROADMAP.md)
+- [Plano de publicação SSH](docs/DEPLOY.md)
 
-O LAB 01 reutiliza a base [Craterfall](https://github.com/blueRonyHazard/craterfall-the-game), commit `0685b15ffa8fd305ad14d0b004add3dc65ae9a3b`, sob **MIT**, com aviso preservado em [labs/craterfall/LICENSE](labs/craterfall/LICENSE). Tem terreno destrutível, vento e nove armas; é **duelo local 2P**, sem multiplayer ou Aduka nesta etapa.
-
-## Documentação
-
-- [Arquitetura e catálogo de laboratórios](docs/LABORATORIOS.md)
-- [Estado de implementação confirmado](docs/STATUS_IMPLANTACAO.md)
-- [Roadmap e decisões de pesquisa](docs/ROADMAP.md)
-- [Configuração do MySQL da Hostinger](docs/DATABASE_SETUP.md)
-
-**Status:** código e home versionados; não afirmar site publicado até verificar a Hostinger.
-
-## Publicação
-
-✅ CI e build aprovados no GitHub Actions. A branch [site-build](https://github.com/hovershotonline/hovershot/tree/site-build) contém os **arquivos estáticos prontos** (~1,58 MB) e a licença do Craterfall. **Ainda falta o deploy para a Hostinger.** Ver [procedimento de publicação](docs/DEPLOY.md).
+**Produto de longo prazo:** combate online de 1v1 a 4v4, vários mobiles incluindo Aduka, tiros 1/2/SS, Dual, Thor, vento, terreno destrutível, ações determinísticas e backend econômico na Hostinger. Estes itens **não devem ser confundidos** com o estado das demos originais.

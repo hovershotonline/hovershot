@@ -21,3 +21,13 @@ Run GitHub Actions **44640749276**: `success`. Branch `site-build` verificada, c
 ## Inventário SSH de pré-deploy — 2026-11-19
 
 O proprietário executou auditoria somente leitura: `PUBLIC_HTML=VALIDADO`, modo `755`; `default.php=ARQUIVO`, **42556 bytes**, modo `644`; `index.html`, `index.php`, `.htaccess`, `.well-known`, `.git` e `.hover-shot-source-commit` ausentes. `ENV_PRIVADO=EXISTE`, modo `600`, `ENV_NA_WEBROOT=NAO`. `RESULTADO=INVENTARIO_CONCLUIDO`. O primeiro deploy **não rodou**, pois se recusou a sobrescrever conteúdo existente. A documentação oficial Hostinger descreve esse `default.php` como página inicial; próximo passo é backup+implantação segura com rollback.
+
+## Catálogo das versões originais — 19/11/2026
+
+**Pedido do proprietário:** testar e conhecer os projetos originais como estão, antes de desenvolver novos protótipos. A home anterior só continha Craterfall e dois cartões fictícios de roadmap; insuficiente.
+
+**Commit de implementação:** registros de cinco submódulos em `sources/originals/` apontando a commits da origem, sem transferir seus arquivos à hospedagem. Home atualizada com seis opções, incluindo quatro links diretos para jogos externos (Rembound, Guntanks, Artillery P2P, Scorched Tanks), um jogo local (Craterfall) e um projeto desktop não jogável em browser (OpenBound). `scripts/build.mjs` preparado para publicar somente a home aprovada e Craterfall, sem o experimento customizado de Arena. Testes do catálogo adicionados ao GitHub Actions.
+
+**Evidência real do deploy anterior:** log do proprietário confirmou `HTTP_INDEX=200`, `HTTP_CSS=200`, `HTTP_JS=200`, `HTTP_LAB01=200`, `HTTP_HOME=200`, `HTTP_JOGO=200`, `RESULTADO=HOVER_SHOT_PUBLICADO_E_VALIDADO` na Hostinger, com `public_html` 755 e `.env` privado preservado. O catálogo de seis opções, por sua vez, **ainda não foi publicado no domínio nesta operação**. Ver [PROJETOS_ORIGINAIS.md](PROJETOS_ORIGINAIS.md).
+
+**Observação de disponibilidade:** as páginas do Guntanks e Artillery P2P foram consultadas no navegador de pesquisa; o acesso em tempo real às demos Rembound e Scorched Tanks não pôde ser confirmado por esse meio. Não prometer que estão online a todo momento.
