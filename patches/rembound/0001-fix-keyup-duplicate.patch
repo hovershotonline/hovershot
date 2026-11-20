@@ -1,0 +1,13 @@
+diff --git a/src/features/game/hooks/use-input.ts b/src/features/game/hooks/use-input.ts
+--- a/src/features/game/hooks/use-input.ts
++++ b/src/features/game/hooks/use-input.ts
+@@ -103,10 +103,8 @@ function bindInput(): CleanupHandler {
+     }
+ 
+     if (event.code === "KeyA") {
+       event.preventDefault();
+-    if (event.code === "KeyA") {
+-      event.preventDefault();
+       store.setMoveKey(-1, false);
+       return;
+     }

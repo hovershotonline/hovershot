@@ -88,3 +88,11 @@
 - [ ] Validar instalação efetiva de Bun, CLI SpacetimeDB, módulo local e frontend no Windows do proprietário.
 - [ ] Executar QA no navegador com autenticação local, treino contra bot, Aduka, lobby e disparos.
 - [ ] Somente depois avaliar publicação própria sob Hover Shot, respeitando componentes persistentes e direitos dos assets. `public_html` estático não executa o backend SpacetimeDB.
+
+## Rembound — bug do projeto original identificado (20/11/2026)
+
+- [x] Verificar Bun, SpacetimeDB local e módulo `gunbound` já instalados/publicados por log do usuário.
+- [x] Comparar erro Next.js `Expected '}', got '<eof>'` com fonte original, confirmar `if (event.code === "KeyA")` duplicado nas linhas 106–109.
+- [x] Versionar patch mínimo de duas linhas em `patches/rembound/0001-fix-keyup-duplicate.patch`.
+- [ ] Aplicar patch **somente na cópia local** após backup e verificar HTTP 200 no frontend.
+- [ ] Verificar visual, autenticação, lobby, Aduka, tiros, bot, terreno e durabilidade do SpacetimeDB. Aviso de fsync com acesso negado foi visto nos logs do banco.

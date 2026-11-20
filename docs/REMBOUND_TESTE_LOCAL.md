@@ -30,3 +30,13 @@
 - [ ] Banco local publicado e Next aberto com status OK.
 - [ ] QA visual e funcional com Aduka, salas, bot e tiros.
 - [ ] Estratégia de deploy próprio a definir (Hostinger Cloud Startup pode não suportar ambos os processos persistentemente no mesmo domínio).
+
+## Diagnóstico confirmado por log do proprietário — 20/11/2026
+
+O ambiente Windows **já tem** Bun 1.4.5, SpacetimeDB 2.2.0, repositório original, dependências, `.env.local` e banco `gunbound` publicado. `127.0.0.1:18763` é ocupado por processo `bun` (PID 1792 no momento da auditoria) e `127.0.0.1:18764` por `spacetimedb-standalone` (PID 18360). Requisições `/` retornam HTTP 500 e não devem ser tratadas como disponibilidade.
+
+**Erro raiz verificado contra fonte do commit `3e807036f444d006d89050c3f89802ed082d9115`**: `src/features/game/hooks/use-input.ts`, linhas 106–109, contém dois inícios `if (event.code === "KeyA") {` consecutivos no `handleKeyUp`; a primeira chave não fecha. O Next relata `Expected '}', got '<eof>'` em linha 147. Patch mínimo versionado em [`patches/rembound/0001-fix-keyup-duplicate.patch`](../patches/rembound/0001-fix-keyup-duplicate.patch): retirar exatamente duas linhas duplicadas, sem alterar controles ou motor. A origem no submódulo permanece intocada; a correção é aplicada apenas na cópia de avaliação do Windows, após conferir texto exato e preservar backup local.
+
+A mensagem `webpack.cache.PackFileCacheStrategy ENOENT` apareceu depois do erro de compilação — tratar como sintoma secundário, não apagar cache ou dados do SpacetimeDB sem evidência. Um aviso do banco sobre `failed to fsync ... os error 5` precisa ser acompanhado caso persista; **não afirmar que o banco é robusto para produção sem teste de durabilidade**. O relatório anterior também identificou ausência de `System32` no `PATH`, que impediu `taskkill.exe` na recuperação. A correção local não exige encerrar processos nem banco.
+
+**Status:** causa exata auditada; patch registrado; execução no Windows e verificação de HTTP 200 ainda **pendentes**. Testar depois renderização e gameplay real, inclusive teclado, Aduka e login.
