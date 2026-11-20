@@ -1,4 +1,4 @@
-// QA de integração: sala, dois jogadores e um tiro em WebSocket real, sem rede externa.
+// QA de integracao: localhost no CI; WSS externo autenticado somente em homologacao manual.
 const { spawn } = require('node:child_process');
 const { createRequire } = require('node:module');
 const { resolve } = require('node:path');
@@ -13,17 +13,17 @@ const remotePrefix = (process.env.HOVERSHOT_QA_REMOTE_PREFIX || '').trim();
 const accessToken = process.env.HOVERSHOT_QA_ACCESS_TOKEN || '';
 const remote = Boolean(remoteHost);
 if (remote) {
-  if (!/^homologacao(?:-[a-z0-9-]+)?\\.hovershot\\.online$/.test(remoteHost))
+  if (!/^homologacao(?:-[a-z0-9-]+)?\.hovershot\.online$/.test(remoteHost))
     throw Error('Host remoto invalido: somente subdominios homologacao*.hovershot.online');
-  if (remotePrefix && !/^\\/(?:[a-z0-9-]+\\/?)*$/.test(remotePrefix))
+  if (remotePrefix && !/^\/(?:[a-z0-9-]+\/?)*$/.test(remotePrefix))
     throw Error('Prefixo remoto invalido');
-  if (accessToken.length < 24 || /\\s/.test(accessToken))
+  if (accessToken.length < 24 || /\s/.test(accessToken))
     throw Error('Token de acesso da homologacao ausente ou invalido');
 } else if (remotePrefix || accessToken) {
   throw Error('Config remota incompleta: falta HOVERSHOT_QA_REMOTE_HOST');
 }
 const port = 18789;
-const prefix = remotePrefix.replace(/\\/$/, '');
+const prefix = remotePrefix.replace(/\/$/, '');
 const base = remote ? 'https://' + remoteHost + prefix : 'http://127.0.0.1:' + port;
 const wsUrl = remote ? 'wss://' + remoteHost + prefix : 'ws://127.0.0.1:' + port;
 const authHeaders = remote ? { Authorization: 'Bearer ' + accessToken } : {};
