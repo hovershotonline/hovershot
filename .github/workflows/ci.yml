@@ -16,6 +16,8 @@ jobs:
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
+      - name: Materializar jogo Guntanks original no commit aprovado
+        run: git submodule update --init --depth 1 -- sources/originals/guntanks
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
@@ -25,7 +27,9 @@ jobs:
         run: npm test
       - name: Validar catalogo de projetos originais
         run: npm run test:catalog
-      - name: Compilar hub e laboratorio 01
+      - name: Validar script de importação
+        run: node --check scripts/package-guntanks.mjs
+      - name: Compilar hub e jogos locais
         run: npm run build
       - name: Verificar artefatos
         run: |
@@ -33,6 +37,11 @@ jobs:
           test -s dist/assets/home.css
           test -s dist/labs/craterfall/index.html
           test -d dist/labs/craterfall/assets
+          test -s dist/labs/guntanks/index.html
+          test -s dist/labs/guntanks/lib/bundle.js
+          test -s dist/labs/guntanks/assets/terrain-full.png
+          test -s dist/labs/guntanks/assets/tank-small-right.png
+          grep -Fq 'Guntanks!' dist/labs/guntanks/index.html
           echo "RESULTADO=BUILD_VALIDADO"
       - uses: actions/upload-artifact@v4
         with:
@@ -60,6 +69,7 @@ jobs:
         run: |
           test -s "${RUNNER_TEMP}/hover-shot-publicacao/index.html"
           test -s "${RUNNER_TEMP}/hover-shot-publicacao/labs/craterfall/index.html"
+          test -s "${RUNNER_TEMP}/hover-shot-publicacao/labs/guntanks/index.html"
       - name: Publicar apenas os arquivos compilados na branch site-build
         shell: bash
         run: |
