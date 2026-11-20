@@ -23,6 +23,8 @@ jobs:
         run: npm install --no-audit --no-fund
       - name: Testes do motor
         run: npm test
+      - name: Validar catalogo de projetos originais
+        run: npm run test:catalog
       - name: Compilar hub e laboratorio 01
         run: npm run build
       - name: Verificar artefatos
