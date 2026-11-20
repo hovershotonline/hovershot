@@ -21,7 +21,7 @@ async function start(t){
       for(const w of [...waiters])if(w.filter(msg)){clearTimeout(w.timer);waiters.splice(waiters.indexOf(w),1);w.resolve(msg);}
     });
     sockets.push(ws);
-    const next=(filter,timeout=3000)=>{
+    const next=(filter,timeout=1200)=>{
       const match=received.find(filter);
       if(match)return Promise.resolve(match);
       return new Promise((resolve,reject)=>{
@@ -70,15 +70,15 @@ test('autenticação errada não autoriza salas',{timeout:15000},async t=>{
 test('2 jogadores: criar sala, entrar, alternar turnos e impedir terceiro',{timeout:15000},async t=>{
   const {connect,lab}=await start(t);
   const a=connect(),b=connect(),c=connect();
-  const aa=await auth(a,'Alice');const bb=await auth(b,'Bob');await auth(c,'Carol');
+  const aa=await auth(a,'Alice');const bb=await auth(b,'Bob');await auth(c,'Carol');console.log('WS_TRACE=AUTH_3_OK');
   a.send({type:'create_room'});
-  const first=await a.next(x=>x.type==='room_state'&&x.players.length===1);
+  const first=await a.next(x=>x.type==='room_state'&&x.players.length===1);console.log('WS_TRACE=ROOM_CREATED');
   assert.match(first.code,/^[A-F0-9]{6}$/);
   a.send({type:'fire',angle:50,power:70});
   assert.equal((await a.next(x=>x.type==='error'&&x.code==='NEED_TWO_PLAYERS')).code,'NEED_TWO_PLAYERS');
   b.send({type:'join_room',code:first.code.toLowerCase()});
-  await a.next(x=>x.type==='room_state'&&x.players.length===2);
-  const joined=await b.next(x=>x.type==='room_state'&&x.players.length===2);
+  await a.next(x=>x.type==='room_state'&&x.players.length===2);console.log('WS_TRACE=ROOM_JOINED_A');
+  const joined=await b.next(x=>x.type==='room_state'&&x.players.length===2);console.log('WS_TRACE=ROOM_JOINED_B');
   assert.equal(joined.turn,aa.id);
   c.send({type:'join_room',code:first.code});
   assert.equal((await c.next(x=>x.type==='error'&&x.code==='ROOM_FULL')).code,'ROOM_FULL');
@@ -87,19 +87,19 @@ test('2 jogadores: criar sala, entrar, alternar turnos e impedir terceiro',{time
   a.send({type:'fire',angle:181,power:50});
   assert.equal((await a.next(x=>x.type==='error'&&x.code==='INVALID_SHOT')).code,'INVALID_SHOT');
   a.send({type:'fire',angle:70,power:80});
-  const fired=await b.next(x=>x.type==='shot_event'&&x.shot===1);
+  const fired=await b.next(x=>x.type==='shot_event'&&x.shot===1);console.log('WS_TRACE=FIRST_SHOT');
   assert.deepEqual([fired.playerId,fired.angle,fired.power,fired.mode],[aa.id,70,80,'network_only']);
   const newTurn=await b.next(x=>x.type==='room_state'&&x.shots===1);
   assert.equal(newTurn.turn,bb.id);
   b.send({type:'fire',angle:45,power:70});
-  await a.next(x=>x.type==='shot_event'&&x.shot===2);
+  await a.next(x=>x.type==='shot_event'&&x.shot===2);console.log('WS_TRACE=SECOND_SHOT');
   b.send({type:'leave_room'});
   await b.next(x=>x.type==='left_room');
   const alone=await a.next(x=>x.type==='room_state'&&x.players.length===1&&x.shots===2);
   assert.equal(alone.turn,aa.id);
   a.send({type:'leave_room'});
   await a.next(x=>x.type==='left_room');
-  assert.equal(lab.rooms.size,0);
+  assert.equal(lab.rooms.size,0);console.log('WS_TRACE=ROOM_CLEANUP');
 });
 test('limite por conexão encerra excesso de mensagens',{timeout:15000},async t=>{
   const {connect}=await start(t);
