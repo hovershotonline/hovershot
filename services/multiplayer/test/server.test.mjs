@@ -31,7 +31,7 @@ async function start(t){
       });
     };
     const send=msg=>ws.send(JSON.stringify(msg));
-    return {ws,next,send,received,open:()=>once(ws,'open')};
+    return {ws,next,send,received,open:()=>ws.readyState===WebSocket.OPEN?Promise.resolve():once(ws,'open')};
   }
   return {port,connect,lab};
 }
@@ -69,8 +69,9 @@ test('autenticação errada não autoriza salas',{timeout:15000},async t=>{
 });
 test('2 jogadores: criar sala, entrar, alternar turnos e impedir terceiro',{timeout:15000},async t=>{
   const {connect,lab}=await start(t);
-  const a=connect(),b=connect(),c=connect();
-  const aa=await auth(a,'Alice');const bb=await auth(b,'Bob');await auth(c,'Carol');console.log('WS_TRACE=AUTH_3_OK');
+  const a=connect();const aa=await auth(a,'Alice');
+  const b=connect();const bb=await auth(b,'Bob');
+  const c=connect();await auth(c,'Carol');console.log('WS_TRACE=AUTH_3_OK');
   a.send({type:'create_room'});
   const first=await a.next(x=>x.type==='room_state'&&x.players.length===1);console.log('WS_TRACE=ROOM_CREATED');
   assert.match(first.code,/^[A-F0-9]{6}$/);
