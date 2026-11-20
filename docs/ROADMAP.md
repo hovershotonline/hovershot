@@ -98,3 +98,17 @@
 - [ ] Verificar visual, autenticação, lobby, Aduka, tiros, bot, terreno e durabilidade do SpacetimeDB. Aviso de fsync com acesso negado foi visto nos logs do banco.
 
 **Evidência recente (20/11/2026):** Rembound original já abre por HTTP 200 em `127.0.0.1:18763` após patch de duas linhas, usando backend ativo `127.0.0.1:18764`. **QA visual/funcional continua pendente**; não confundir HTTP 200 com partida validada. Ver `REMBOUND_TESTE_LOCAL.md`.
+
+## Gate de fidelidade ao GunBound — feedback do usuário (19/11/2026)
+
+**Teste do proprietário realizado:** Rembound abre e é utilizável, mas a experiência de combate **não foi considerada parecida com GunBound** além de nomes/sprites dos mobiles. Isso substitui qualquer suposição anterior de que "11 mobiles + lobby" significasse fidelidade.
+
+- [x] Validar Rembound real no navegador e colher avaliação qualitativa do usuário.
+- [x] Inspecionar a implementação de balística/tiros do commit original: `aduko.secondary=airSplit` (2 projéteis), física com vento/gravitacional próprios e delays aproximados; não confundir com Thor/Aduka do GunBound clássico.
+- [x] Classificar motor de combate Rembound como **não aprovado pela experiência do usuário**; manter sistema/lobby como possível referência, não como decisão de adoção.
+- [ ] Formular especificação canônica de gameplay GunBound clássico, com registro de diferença observável e critérios de aceitação por mobile/shot, começando por Aduka/Thor.
+- [ ] Validar a física de tiro e vento, a curva de potência, danos/terreno e timing/turnos com casos reproduzíveis.
+- [ ] Auditar viabilidade/licenças de bases alternativas antes de decidir reescrever motor ou importar outro que seja mais fiel.
+- [ ] Somente após protótipo validado em laboratório, integrar a experiência aprovada no Hover Shot; **não** alterar produção automaticamente.
+
+**Distinção de estado:** feedback foi **observado pelo usuário**; divergência no código `aduko` foi **verificada na fonte**; próximo motor/implementação são **propostas**, não funcionalidades prontas. Detalhes em `REMBOUND_TESTE_LOCAL.md`.
