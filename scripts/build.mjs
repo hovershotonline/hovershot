@@ -1,5 +1,6 @@
 import { spawnSync } from 'node:child_process';
-import { cpSync, existsSync, mkdirSync, rmSync, writeFileSync } from 'node:fs';
+import { createHash } from 'node:crypto';
+import { cpSync, existsSync, mkdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs';
 import { resolve, dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { renderCatalogHtml, catalog } from './render-catalog.mjs';
@@ -8,8 +9,27 @@ const root=resolve(dirname(fileURLToPath(import.meta.url)),'..');
 const dist=resolve(root,'dist');
 rmSync(dist,{recursive:true,force:true});
 mkdirSync(dist,{recursive:true});
-writeFileSync(resolve(dist,'index.html'),renderCatalogHtml(),'utf8');
+// O servidor mantém cache de 7 dias para assets: publicar URLs de hash sem criar cópias extras.
 cpSync(resolve(root,'site/assets'),resolve(dist,'assets'),{recursive:true});
+const hashFile=path=>createHash('sha256').update(readFileSync(path)).digest('hex').slice(0,12);
+const modelPath=resolve(dist,'assets/playtest-model.js');
+const jsPath=resolve(dist,'assets/home.js');
+const cssPath=resolve(dist,'assets/home.css');
+const importOriginal="from './playtest-model.js';";
+const jsSource=readFileSync(jsPath,'utf8');
+if(!existsSync(modelPath)||!jsSource.includes(importOriginal))throw Error('MODULO_PLAYTEST_AUSENTE');
+const modelVersion=hashFile(modelPath);
+writeFileSync(jsPath,jsSource.replace(importOriginal,"from './playtest-model.js?v="+modelVersion+"';"),'utf8');
+const jsVersion=hashFile(jsPath);
+const cssVersion=hashFile(cssPath);
+let html=renderCatalogHtml();
+const originalCss='href="/assets/home.css"';
+const originalJs='src="/assets/home.js"';
+if(!html.includes(originalCss)||!html.includes(originalJs))throw Error('REFERENCIA_ASSET_INVALIDA');
+html=html.replace(originalCss,'href="/assets/home.css?v='+cssVersion+'"')
+         .replace(originalJs,'src="/assets/home.js?v='+jsVersion+'"');
+writeFileSync(resolve(dist,'index.html'),html,'utf8');
+console.log('ASSETS_VERSIONADOS=CSS_JS_MODULO');
 const ts=resolve(root,'node_modules/typescript/bin/tsc');
 const vite=resolve(root,'node_modules/vite/bin/vite.js');
 for(const bin of [ts,vite]){

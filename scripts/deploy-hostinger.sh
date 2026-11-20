@@ -182,6 +182,23 @@ grep -Fq 'id="versao-hovershot"' "$ROOT/index.html" || exit 58
 curl -fsSL --retry 2 --connect-timeout 8 --max-time 40 \
   "https://hovershot.online/?githubdeploy=$SHA" -o "$STAGE/home.html"
 grep -Fq 'id="versao-hovershot"' "$STAGE/home.html" || exit 59
+# A URL com ?githubdeploy= deve ter a mesma home estática recém-publicada.
+cmp -s "$STAGE/home.html" "$ROOT/index.html" || { echo "RESULTADO=HTML_CACHE_INCONSISTENTE" >&2; exit 59; }
+grep -Eq 'href="/assets/home.css\\?v=[a-f0-9]{12}"' "$STAGE/home.html" || exit 59
+grep -Eq 'src="/assets/home.js\\?v=[a-f0-9]{12}"' "$STAGE/home.html" || exit 59
+# Falha fechada caso Apache entregue um módulo como texto (regressão de 20/11).
+for path in /assets/home.css /assets/home.js /assets/playtest-model.js; do
+  curl -fsSL --retry 2 --connect-timeout 8 --max-time 25 \
+    -D "$STAGE/content-headers" -o "$STAGE/content-body" \
+    "https://hovershot.online$path?githubdeploy=$SHA" || exit 61
+  if [[ "$path" == *.css ]]; then
+    tr -d '\\r' < "$STAGE/content-headers" | grep -Eiq '^content-type:[[:space:]]*text/css([[:space:];]|$)' || { echo "RESULTADO=MIME_CSS_INVALIDO" >&2; exit 62; }
+    grep -Fq '.version-card' "$STAGE/content-body" || exit 62
+  else
+    tr -d '\\r' < "$STAGE/content-headers" | grep -Eiq '^content-type:[[:space:]]*[^;]*javascript' || { echo "RESULTADO=MIME_JS_INVALIDO" >&2; exit 63; }
+  fi
+  echo "MIME_OK=$path"
+done
 for route in /assets/home.css /assets/home.js /labs/guntanks/ /labs/craterfall/; do
   curl -fsSL --retry 2 --connect-timeout 8 --max-time 25 \
     "https://hovershot.online$route?githubdeploy=$SHA" -o /dev/null || exit 60

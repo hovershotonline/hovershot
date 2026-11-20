@@ -68,6 +68,7 @@ test('registro pessoal de playtest fica no navegador, com critérios não testad
  assert.match(html,/id="playtest-results"/);
  assert.match(html,/id="copy-playtests"/);
  assert.match(html,/type="module" src="\/assets\/home\.js"/);
+ assert.match(js,/from '\.\/playtest-model\.js'/);
  assert.match(js,/localStorage\.setItem/);
  assert.match(js,/loadAssessment\(item\.id\)/);
  assert.doesNotMatch(js,/fetch\(|XMLHttpRequest/);

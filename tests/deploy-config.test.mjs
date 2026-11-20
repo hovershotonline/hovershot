@@ -43,6 +43,14 @@ test('rollback temporario e caminhos restritos ao site',()=>{
   assert.match(deploy,/MYSQL=INALTERADO/);
   assert.match(deploy,/OUTROS_DOMINIOS=INALTERADOS/);
 });
+test('checagem de cache e MIME protege integridade da home publicada',()=>{
+  assert.match(deploy,/playtest-model\.js/);
+  assert.match(deploy,/MIME_OK=/);
+  assert.match(deploy,/MIME_JS_INVALIDO/);
+  assert.match(deploy,/MIME_CSS_INVALIDO/);
+  assert.match(deploy,/HTML_CACHE_INCONSISTENTE/);
+  assert.match(workflow,/tests\/build-assets\.test\.mjs/);
+});
 test('build nao remove versoes ja publicadas',()=>{
   assert.match(deploy,/labs\/guntanks\/index\.html/);
   assert.match(deploy,/labs\/craterfall\/index\.html/);

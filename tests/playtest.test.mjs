@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {sanitizeRecord,normalizeRecords,summarize,makeReport} from '../site/assets/playtest-model.mjs';
+import {sanitizeRecord,normalizeRecords,summarize,makeReport} from '../site/assets/playtest-model.js';
 
 test('zero significa não testado e não reduz a média',()=>{
  const r=sanitizeRecord({scores:{visual:5,controles:3,fisica:0,online:0},note:'  Teste local  '});
