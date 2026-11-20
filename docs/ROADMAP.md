@@ -1,3 +1,16 @@
+> **RETIFICAÇÃO DE DECISÃO (19/11/2026):** O proprietário **não escolheu nenhum motor**. A importação técnica do Hillshot foi feita antecipadamente pelo assistente; o status correto é **candidato em avaliação**, nunca base aprovada. Não executar implantação, refatoração ou customização de Hillshot (ou outra engine) como motor do produto antes de decisão expressa. O objetivo confirmado permanece jogo **somente no navegador, em `hovershot.online`, multiplayer online com amigos**.
+
+## Gate vigente — escolher a experiência e o motor antes da implementação
+
+- [x] Registrar que Hillshot possui licença MIT e smoke WS local aprovado; candidato, não selecionado.
+- [x] Registrar playtest Rembound que reprovou sua experiência de combate.
+- [ ] Comparar candidatas quanto a jogabilidade real, fidelidade inspirada em GunBound, licenças de código/arte, multiplayer próprio, complexidade de operação e custo.
+- [ ] Oferecer opções claras e oportunidades de teste sem confundir teste com aprovação.
+- [ ] **Receber escolha explícita do proprietário** para adotar uma base, combinar componentes ou rejeitá-los.
+- [ ] Só após aprovação adaptar frontend e backend para partida online própria em `hovershot.online`.
+
+---
+
 > **ESCOPO VIGENTE — 19/11/2026:** Hover Shot será **JOGO ONLINE SOMENTE NO NAVEGADOR, em `hovershot.online`**, não Windows. O usuário rejeitou clientes desktop. Primeiro importar uma base web funcional, depois colocar **frontend no domínio e backend multiplayer sob controle próprio**. O texto histórico abaixo não prevalece em caso de conflito. Ver [PRODUTO_CANONICO.md](PRODUTO_CANONICO.md).
 
 ## Entrega prioritária: partida web multiplayer
@@ -5,8 +18,8 @@
 - [x] Corrigir requisitos: browser only, domínio Hover Shot, partida online com amigos.
 - [x] Inspecionar Hillshot com cliente web + WebSocket autoritativo, MIT, assets Kenney CC0.
 - [x] Importar código Hillshot via submódulo no GitHub e validar smoke WS de dois clientes na mesma sala + tiro. Job aprovado no Actions 44661916212, SHA 6d4b0b34957eb7d6383b88ad986620ffb5ca688b.
-- [ ] Prover servidor WSS persistente próprio (Cloud Startup não aceita WS inbound); adaptar endpoint para domínio controlado.
-- [ ] Servir jogo em `https://hovershot.online/play/`, testando dois jogadores em redes distintas.
+- [ ] **Após escolha do motor:** prover servidor WSS persistente próprio (Cloud Startup não aceita WS inbound), adaptando endpoint para domínio controlado.
+- [ ] **Após escolha do motor e QA:** servir jogo em `https://hovershot.online/play/`, testando dois jogadores em redes distintas.
 - [ ] Auditar segurança, reconexão, limites, cargas e retenção e comparar experiência de combate GunBound antes do refinamento.
 
 ---

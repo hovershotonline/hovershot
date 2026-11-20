@@ -1,3 +1,5 @@
+> **ESTADO DE DECISÃO (19/11/2026):** Hillshot é um **candidato não aprovado**. Não promover, adaptar ou instalar em produção como jogo Hover Shot sem o proprietário escolher a base. CI confirma apenas funcionamento técnico em localhost.
+
 # Hillshot: base web multiplayer importada para avaliação
 
 **Fonte:** https://github.com/m-esm/hillshot · **SHA fixado:** `4014612e9735b4e9c74dab94abcd941f2301630c` · **Licença:** MIT, aviso do autor mantido no submódulo. Arte de tanques: Kenney CC0. Conferir a licença dos outros assets antes de redistribuir.
@@ -10,7 +12,7 @@
 - `public/`: navegador, sala/convite, Phaser 3, efeitos e controles.
 - `package.json`: Node >=18, dependência `ws`, comando `npm start`.
 
-**Importado para Git:** `sources/engines/hillshot` como submódulo. Ainda não executado no domínio. A decisão de escolher essa base foi por disponibilidade de implementação e licença, não por fidelidade visual a GunBound (o original possui seis armas genéricas e não Shot 1/2/SS por mobile).
+**Importado para Git como CANDIDATO, não base escolhida:** `sources/engines/hillshot` como submódulo. Ainda não executado no domínio. O usuário não selecionou o Hillshot: a importação ocorreu por iniciativa do assistente para avaliação, não como aprovação do proprietário. O original possui seis armas genéricas e não Shot 1/2/SS por mobile.
 
 ## Integração e segurança
 

@@ -6,7 +6,7 @@
 
 Priorizar a importação de uma implementação web **já jogável e com multiplayer** para evitar refazer física, turnos, terrenos, lobby e sincronismo. A experiência de combate será evoluída com mecânicas inspiradas no GunBound clássico (vento, potência, delay, tiro 1/2/SS, Thor), preservando ativos e identidade próprios e respeitando direitos de terceiros. Rembound foi testado e rejeitado como motor de combate fiel; ele permanece somente como referência.
 
-**Primeiro candidato importado para auditoria:** [Hillshot](https://github.com/m-esm/hillshot) no SHA `4014612e9735b4e9c74dab94abcd941f2301630c` (MIT, servidor Node.js + ws autoritativo, cliente HTML5/Phaser, salas de até 8 jogadores, bots, física, terreno destrutível). Submódulo Git em `sources/engines/hillshot` preserva a versão integral por SHA sem duplicação. **Importação não equivale a publicação ou aprovação da fidelidade visual.** O Hillshot original possui armas genéricas e ainda não implementa os mobiles do GunBound.
+**Candidato técnico importado sem aprovação como motor de produto:** [Hillshot](https://github.com/m-esm/hillshot) no SHA `4014612e9735b4e9c74dab94abcd941f2301630c` (MIT, servidor Node.js + ws autoritativo, cliente HTML5/Phaser, salas de até 8 jogadores, bots, física, terreno destrutível). Submódulo Git em `sources/engines/hillshot` preserva a versão integral por SHA sem duplicação. **Importação não equivale a escolha do proprietário, publicação ou aprovação da experiência.** O Hillshot original possui armas genéricas e ainda não implementa os mobiles do GunBound.
 
 ## Resultado esperado
 
@@ -20,12 +20,16 @@ Priorizar a importação de uma implementação web **já jogável e com multipl
 
 A [Hostinger informa](https://www.hostinger.com/support/hostinger-node-js-limits-for-web-and-cloud-plans/) que hospedagem Web/Cloud **não aceita WebSocket de entrada**, mesmo para Node.js. Logo, copiar o frontend à webroot **não cria multiplayer**. Solução a validar: frontend estático em `hovershot.online/play/`, backend WebSocket persistente sob controle do proprietário em VPS (com TLS, domínio controlado e autenticação), sem alterar outros sites. A implementação original do Hillshot conecta WebSocket em `location.host` e precisará de adaptação do endpoint antes de distribuir frontend e backend em servidores distintos.
 
+## Princípio de decisão — autoridade do proprietário
+
+**Nenhum motor de jogo foi selecionado pelo proprietário.** Importar um projeto open source, executar CI ou comprovar conexões WebSocket é apenas pesquisa, não decisão de produto. Antes de desenvolver um fork do Hillshot ou substituir produção, oferecer comparativo de bases que possam ser usadas legalmente, com teste de jogabilidade isolado, requisitos de rede, custo e fidelidade; apresentar alternativas e aguardar escolha explícita. Não tratar requisitos fixados de navegador, domínio e multiplayer como autorização para selecionar motor.
+
 ## Estado e etapas
 
 - [x] Confirmado objetivo somente navegador e domínio Hover Shot.
 - [x] Licença MIT do Hillshot e licença CC0 de sprites Kenney conferidas; código multiplayer inspecionado.
 - [x] CI de integração: submódulo fixado e **2 clientes WebSocket simulados no runner**, criação de sala, início e tiro replicado. Job `Engine web - 2 jogadores e tiro (WS localhost)` no run 44661916212 — **success**. Não é teste humano nem deploy.
-- [ ] Verificar backend persistente, WSS/TLS e isolamento das rotas no domínio.
+- [ ] Proprietário escolher a base após ver opções e experimentar gameplay; só então definir integração de backend persistente, WSS/TLS e isolamento.
 - [ ] Executar playtest real entre duas pessoas pela internet e validar reconexão/segurança.
 - [ ] Adaptar engine, UI e comportamento do jogo conforme testes, preservando atribuições de licenças.
 
