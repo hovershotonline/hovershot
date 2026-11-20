@@ -1,0 +1,15 @@
+[submodule "sources/originals/rembound"]
+	path = sources/originals/rembound
+	url = https://github.com/remcostoeten/Gunbound.git
+[submodule "sources/originals/guntanks"]
+	path = sources/originals/guntanks
+	url = https://github.com/masag0/Guntanks.git
+[submodule "sources/originals/openbound"]
+	path = sources/originals/openbound
+	url = https://github.com/WickedPeanuts/OpenBound.git
+[submodule "sources/originals/artillery"]
+	path = sources/originals/artillery
+	url = https://github.com/lettfeti/artillery.git
+[submodule "sources/originals/scorched-tanks"]
+	path = sources/originals/scorched-tanks
+	url = https://github.com/whorn76/scorched-tanks.git
