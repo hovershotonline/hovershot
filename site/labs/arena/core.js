@@ -37,7 +37,7 @@ export function makeTerrain(seed) {
   const a = rand() * 6.28, b = rand() * 6.28, c = rand() * 6.28;
   const heights = Array.from({ length: WORLD.width }, (_, x) => {
     let h = 427 + Math.sin(x / 126 + a) * 42 + Math.sin(x / 65 + b) * 21 + Math.sin(x / 29 + c) * 7;
-    h += Math.exp(-((x - 605) / 190) ** 2) * 40;
+    h += Math.exp(-(((x - 605) / 190) ** 2)) * 40;
     return Math.round(clamp(h, 350, 510));
   });
   for (const cx of [180, 1020]) {
