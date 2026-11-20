@@ -202,3 +202,13 @@ Após playtest que reprovou a fidelidade do Rembound, foram pesquisados **Dragon
 - [ ] Playtest DragonBound no navegador e benchmarking qualitativo.
 - [ ] Teste GunBros original no sandbox de desenvolvimento Windows isolado (não foi instalado).
 - [ ] Decidir motor com critério de fidelidade e licenças antes de qualquer importação pública.
+
+---
+
+## Instrumentacao de homologacao remota — 20/11/2026
+
+- [x] Preparar workflow **manual**, sem deploy, para testar HTTPS/WSS, sala e disparo do candidato Hillshot contra backend isolado (modo remoto autenticado por Bearer); smoke localhost do CI preservado.
+- [x] Documentar no [QA multiplayer remoto](QA_MULTIPLAYER_REMOTO.md) requisitos de TLS, proxy, licenciamento, acesso restrito e limites da evidencia automatizada.
+- [ ] Provisionar DNS, certificado e backend WSS privado; **nenhum servidor foi publicado nesta etapa**.
+- [ ] Obter sucesso de smoke GitHub externo (runner) e, em seguida, concluir playtest com dois humanos em redes distintas.
+- [ ] Registrar qualidade comparativa e escolha explicita do proprietario antes de adotar motor.
