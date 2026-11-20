@@ -13,3 +13,7 @@
 [submodule "sources/originals/scorched-tanks"]
 	path = sources/originals/scorched-tanks
 	url = https://github.com/whorn76/scorched-tanks.git
+
+[submodule "sources/engines/hillshot"]
+	path = sources/engines/hillshot
+	url = https://github.com/m-esm/hillshot.git

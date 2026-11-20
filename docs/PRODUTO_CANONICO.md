@@ -1,55 +1,32 @@
-# Hover Shot — definição canônica do produto
+# Hover Shot — finalidade canônica vigente
 
-**Decisão expressa do proprietário — 19/11/2026:** construir **um jogo próprio de artilharia por turnos**, cuja autoria/controle técnico, código-fonte, evolução, distribuição e infraestrutura online pertençam ao projeto Hover Shot, permitindo **jogar com amigos pela internet em salas próprias**. Não é um catálogo de jogos, projeto de links externos, emulador de servidor privado do GunBound nem uma conta num serviço de terceiros. **O usuário rejeitou jogar GunBound no navegador como objetivo final**; priorizar um **cliente instalável Windows** sob marca própria, sujeito à escolha técnica posterior. O site `hovershot.online` será portal do projeto, informações/contas/atualizações, **não uma dependência para a partida**.
+**Decisão expressa do proprietário (19/11/2026):** o Hover Shot será um jogo de artilharia **100% online no navegador, em `hovershot.online`, multiplayer com amigos**, com código e backend sob controle do proprietário. **Nenhum cliente Windows, aplicativo ou instalador desktop.** Propostas anteriores de Windows/Godot e Hedgewars desktop foram rejeitadas. Este documento substitui os textos conflitantes anteriores.
 
-## Objetivo e critérios de aceitação
+## Estratégia de reaproveitamento
 
-1. **Propriedade e autonomia:** fonte original sob GitHub controlado pelo proprietário, regras/ativos próprios, pipeline de build, binário distribuível e capacidade de operar/migrar servidor sem depender de serviço de outro desenvolvedor. Não prometer propriedade exclusiva sobre bibliotecas externas; cumprir licenças e direitos de terceiros.
-2. **Multiplayer real:** aplicativo Windows conecta à instância dedicada controlada pelo proprietário; criação/entrada de sala via código ou convite; no MVP, **1v1 real entre computadores distintos pela internet**, sincronismo e reconexão básica; evoluir para até oito jogadores após medir capacidade e qualidade.
-3. **Combate inspirado na experiência GunBound clássico:** mira, potência, vento, curvas de projéteis, terreno destrutível, turnos com delay, movimento, shots 1/2/SS e comportamento distinto por mobile. **Aduka e Thor** são referências funcionais obrigatórias de validação, mas não copiar nomes, personagens, assets, músicas ou marca de terceiros sem direitos; criar personagem e apresentação próprios que entreguem mecânica equivalente.
-4. **Controle de operações:** servidor dedicado persistente e autoritativo, sem aceitar cliente como autoridade de dano/colisão/turno; minimizar uso de CPU/rede/disco, manter snapshots apenas quando necessários, logs com retenção, evitar armazenamento de quadros de jogo; usar GitHub para código/versionamento, não guardar credenciais e dados de jogadores no GitHub.
-5. **Evolução independente:** cliente e servidor com versões compatíveis, atualização controlada, CI com testes, rollback, documentação, telemetria mínima consentida.
-6. **Experiência completa:** o usuário instala/abre o aplicativo Hover Shot, escolhe nome, cria sala, compartilha convite, joga contra amigo e encerra partida **sem abrir jogos de terceiros**.
+Priorizar a importação de uma implementação web **já jogável e com multiplayer** para evitar refazer física, turnos, terrenos, lobby e sincronismo. A experiência de combate será evoluída com mecânicas inspiradas no GunBound clássico (vento, potência, delay, tiro 1/2/SS, Thor), preservando ativos e identidade próprios e respeitando direitos de terceiros. Rembound foi testado e rejeitado como motor de combate fiel; ele permanece somente como referência.
 
-## O que não é objetivo
+**Primeiro candidato importado para auditoria:** [Hillshot](https://github.com/m-esm/hillshot) no SHA `4014612e9735b4e9c74dab94abcd941f2301630c` (MIT, servidor Node.js + ws autoritativo, cliente HTML5/Phaser, salas de até 8 jogadores, bots, física, terreno destrutível). Submódulo Git em `sources/engines/hillshot` preserva a versão integral por SHA sem duplicação. **Importação não equivale a publicação ou aprovação da fidelidade visual.** O Hillshot original possui armas genéricas e ainda não implementa os mobiles do GunBound.
 
-- Jogar Rembound, GunBros, DragonBound ou outros em navegadores externos como substituto do produto.
-- Publicar projetos de terceiros em `/labs/` e declarar o Hover Shot finalizado.
-- Reproduzir o servidor oficial do GunBound, utilizar seus gráficos/áudios ou chamar o produto de GunBound sem autorização.
-- Adotar motor de combate do Rembound: playtest do usuário rejeitou sua fidelidade de combate.
-- Empilhar protótipos sem caminho de entrega para aplicativo desktop + servidor próprio.
+## Resultado esperado
 
-## Arquitetura preliminar — hipótese, não implementação
+- Jogador abre `https://hovershot.online/` e entra no Hover Shot sem sair do domínio para acessar outros jogos.
+- Cria sala de jogo, compartilha código com amigos e inicia partida em navegadores distintos, por internet.
+- Combate 2D com mira, força, vento, terreno destrutível, HP, dano e turnos sincronizados, decisões validadas pelo servidor próprio.
+- Depois de validar a partida, evoluir móveis com ataques distintos, delay e tiros complexos; até oito jogadores conforme capacidade real.
+- Código e instalações versionados no GitHub; logs compactos, sem acúmulo de backups na Hostinger; assets próprios ou licenciados.
 
-- **Cliente Windows:** avaliar **Godot 4** exportado para Windows (2D nativo, input, câmera, áudio, cenas e empacotamento), construindo identidade e ativos originais. A escolha requer prova de conceito e comparação com alternativas, não está aprovada nem implementada.
-- **Servidor de partida:** processo dedicado em VPS separado do hosting compartilhado Hostinger para manter sessão e conexões estáveis; simulação autoritativa por sala com eventos/estado compacto, sanidade anti-cheat e reconciliação para reconexões. Escolher protocolo após experimento de rede (por exemplo ENet/UDP ou WebSocket, não assumir escalabilidade).
-- **Domínio:** `hovershot.online` para portal/download/notícias; subdomínio ou IP para transporte de partidas. Não instalar daemons no `public_html` compartilhado nem interferir em outros domínios.
-- **Fonte:** manter documentação e código canônico em `hovershotonline/hovershot`; avaliar repositório privado quando houver código proprietário. GitHub Actions gera distribuição Windows e release rastreável; evitar gravações/backups desnecessários na Hostinger.
-- **Técnica:** motor separa input, regras/estado, simulação física e apresentação; servidor autoritativo determina turnos, impacto e dano; todo disparo tem ID, versão de física e seed reproduzível.
+## Infraestrutura — restrição verificada
 
-## Critérios de aceitação do primeiro vertical slice
+A [Hostinger informa](https://www.hostinger.com/support/hostinger-node-js-limits-for-web-and-cloud-plans/) que hospedagem Web/Cloud **não aceita WebSocket de entrada**, mesmo para Node.js. Logo, copiar o frontend à webroot **não cria multiplayer**. Solução a validar: frontend estático em `hovershot.online/play/`, backend WebSocket persistente sob controle do proprietário em VPS (com TLS, domínio controlado e autenticação), sem alterar outros sites. A implementação original do Hillshot conecta WebSocket em `location.host` e precisará de adaptação do endpoint antes de distribuir frontend e backend em servidores distintos.
 
-- [ ] Aplicativo `Hover Shot` Windows abre sem navegador e possui tela inicial compacta.
-- [ ] Dois computadores em redes diferentes conectam ao mesmo servidor sob controle do proprietário.
-- [ ] Um jogador cria sala, outro entra por código/convite; indicação de ambos na sala.
-- [ ] Uma arena 2D, terreno destrutível e **um mobile original inicial** com mira, vento, potência, tiro simples e tiro avançado com efeito tipo Thor (sem copiar arte/som).
-- [ ] Mesma simulação autoritativa para ambos: posição, tiros, crateras, HP, turnos, delay, vitória; clientes não podem decidir dano.
-- [ ] Desconexão, atraso e retorno são tratados sem quebrar a partida nem duplicar ações.
-- [ ] Binário Windows e servidor obtidos de CI versionado, deploy próprio verificável, rollback e documentação.
-- [ ] Proprietário e amigo testam partida online de ponta a ponta, com evidência real; marcar esse item somente após teste.
+## Estado e etapas
 
-## Fases
+- [x] Confirmado objetivo somente navegador e domínio Hover Shot.
+- [x] Licença MIT do Hillshot e licença CC0 de sprites Kenney conferidas; código multiplayer inspecionado.
+- [ ] CI de integração: materializar o código fixado e testar duas conexões WebSocket criando sala e disparando.
+- [ ] Verificar backend persistente, WSS/TLS e isolamento das rotas no domínio.
+- [ ] Executar playtest real entre duas pessoas pela internet e validar reconexão/segurança.
+- [ ] Adaptar engine, UI e comportamento do jogo conforme testes, preservando atribuições de licenças.
 
-**Fase A — base própria:** inventário de fontes atuais, escolha de engine/servidor e teste de licenças; evitar transportar código de projeto sem licença.
-
-**Fase B — partida mínima:** projeto do cliente + servidor próprios, sala online real, 1v1, física/vento/tiros, ambiente único.
-
-**Fase C — fidelidade:** benchmark reproduzível de tiros/vento/delay e comportamento inspirado em Aduka/Thor, qualidade visual e sensação de jogo; ajustes guiados por playtests do proprietário.
-
-**Fase D — beta privado:** autenticação/convites, reconexão, logs e atualizador, testes com amigos, até oito jogadores após validação e dimensionamento.
-
-## Estado factual — 19/11/2026
-
-O repositório contém **laboratórios web de terceiros** (Guntanks, Craterfall) e documentação de outros projetos. Estes são **experimentos históricos e referências**, não o cliente Windows nem o multiplayer proprietário. O Rembound foi executado localmente (Next.js/SpacetimeDB, HTTP 200 e playtest) e rejeitado quanto à fidelidade do combate. **Não há evidência de cliente Hover Shot Windows, servidor próprio nem partida online funcionando.** Não alegar implementação de algo ainda não produzido.
-
-A documentação anterior sobre `/labs/` fica preservada para rastreabilidade, mas **esta definição de produto prevalece** quando houver conflito. Atualizar o Roadmap conforme decisões, implementações e testes verificáveis, sem confundir pesquisa de terceiros com software pronto.
+**Estado factual:** não há multiplayer publicado no domínio ainda. Os jogos disponíveis no catálogo atual são laboratórios históricos, não o produto Hover Shot pronto.

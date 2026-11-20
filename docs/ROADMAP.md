@@ -1,3 +1,16 @@
+> **ESCOPO VIGENTE — 19/11/2026:** Hover Shot será **JOGO ONLINE SOMENTE NO NAVEGADOR, em `hovershot.online`**, não Windows. O usuário rejeitou clientes desktop. Primeiro importar uma base web funcional, depois colocar **frontend no domínio e backend multiplayer sob controle próprio**. O texto histórico abaixo não prevalece em caso de conflito. Ver [PRODUTO_CANONICO.md](PRODUTO_CANONICO.md).
+
+## Entrega prioritária: partida web multiplayer
+
+- [x] Corrigir requisitos: browser only, domínio Hover Shot, partida online com amigos.
+- [x] Inspecionar Hillshot com cliente web + WebSocket autoritativo, MIT, assets Kenney CC0.
+- [ ] Importar código Hillshot no GitHub e validar CI smoke de dois clientes na mesma sala.
+- [ ] Prover servidor WSS persistente próprio (Cloud Startup não aceita WS inbound); adaptar endpoint para domínio controlado.
+- [ ] Servir jogo em `https://hovershot.online/play/`, testando dois jogadores em redes distintas.
+- [ ] Auditar segurança, reconexão, limites, cargas e retenção e comparar experiência de combate GunBound antes do refinamento.
+
+---
+
 > **DECISÃO PRIORITÁRIA DO PROPRIETÁRIO (19/11/2026):** objetivo é **ser dono do jogo Hover Shot e jogar online com amigos**, com **cliente Windows próprio** e servidor sob controle do proprietário, **não jogar GunBound em navegador** nem perseguir clones externos. A documentação obrigatória é [PRODUTO_CANONICO.md](PRODUTO_CANONICO.md). As listas antigas de importar/jogar em `/labs/`, avaliar DragonBound e GunBros são **histórico de pesquisa**, não prioridades ativas.
 
 ## Fase vigente — jogo próprio instalável e multiplayer real
