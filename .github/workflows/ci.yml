@@ -30,6 +30,10 @@ jobs:
         run: npm test
       - name: Validar catalogo de projetos originais
         run: npm run test:catalog
+      - name: Validar sintaxe da interface e das avaliações
+        run: |
+          node --check site/assets/home.js
+          node --check site/assets/playtest-model.mjs
       - name: Validar script de importação
         run: node --check scripts/package-guntanks.mjs
       - name: Validar configuracao e script de deploy (sem credenciais)
