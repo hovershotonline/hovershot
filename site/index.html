@@ -1,25 +1,55 @@
 <!doctype html>
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#090f18">
-<meta name="description" content="Hover Shot: conheça e teste versões originais de jogos de artilharia no navegador. Rembound, Guntanks, Artillery, Scorched Tanks, Craterfall e OpenBound.">
-<title>Hover Shot — Experiências originais</title><link rel="stylesheet" href="/assets/home.css"></head>
-<body><div class="glow" aria-hidden="true"></div>
-<header class="bar shell"><a class="logo" href="/" aria-label="Hover Shot início"><span class="logo-icon">↗</span>HOVER<span>SHOT</span></a><div class="nav"><span class="activity"><i></i> Acervo de experimentos</span><a href="#experiencias">Projetos <span>↗</span></a></div></header>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#081019">
+<meta name="description" content="Hover Shot: catálogo permanente de versões e referências de jogos de artilharia. Compare jogos hospedados, demos originais, tecnologias, menus e multiplayer.">
+<title>Hover Shot — Laboratório de versões</title>
+<link rel="stylesheet" href="/assets/home.css">
+</head>
+<body>
+<header class="topbar"><div class="shell topbar-in">
+<a href="/" class="brand" aria-label="Hover Shot — início"><span class="brand-mark">↗</span>HOVER<span>SHOT</span></a>
+<nav aria-label="Navegação principal"><a href="#versoes">Versões</a><a href="#como-funciona">Como comparar</a></nav>
+<span class="top-info"><span class="dot"></span> LABORATÓRIO PERMANENTE</span>
+</div></header>
 <main>
-<section class="hero shell"><div class="intro"><div class="eyebrow"><span class="square"></span> LABORATÓRIO DE REFERÊNCIAS · VERSÕES ORIGINAIS</div><h1>CONHEÇA.<br><em>TESTE.</em><br>COMPARE.</h1><p>Jogue os projetos realmente instalados <strong>dentro do Hover Shot</strong>. A home mostra o que está disponível e o que ainda precisa de adaptação antes de funcionar aqui.</p><div class="hero-actions"><a class="cta" href="#experiencias">Explorar projetos <span>↗</span></a><span class="hero-aside">06 projetos catalogados <span>·</span> 02 instalados aqui</span></div></div><div class="illustration" aria-hidden="true"><div class="ring r1"></div><div class="ring r2"></div><div class="ring r3"></div><div class="sphere">H<span>✦</span>S</div><span class="plus">+</span><span class="small-cross">×</span></div></section>
-<section class="experiences shell" id="experiencias"><div class="section-title"><div><span class="eyebrow">PROJETOS E EXPERIÊNCIAS</span><h2>Escolha o jogo <small>06</small></h2></div><p>Originais executados localmente · Sem links externos no botão jogar.</p></div>
-<div class="filters" role="group" aria-label="Filtrar projetos"><button class="active" type="button" data-filter="all" aria-pressed="true">Todos <span>06</span></button><button type="button" data-filter="ready" aria-pressed="false">Jogáveis aqui <span>02</span></button><button type="button" data-filter="blocked" aria-pressed="false">Indisponíveis <span>04</span></button></div>
-<div class="cards originals">
-<article class="lab-card" data-state="blocked"><div class="card-header"><span>PROJETO / 01</span><span class="chip pending"><i></i> BACKEND PENDENTE</span></div><div class="art rembound"><div class="lines"></div><span class="symbol">⚡</span><span class="art-tag">11 MOBILES · ADUKA · LOBBY ONLINE</span></div><div class="card-body"><div class="category">MAIS PRÓXIMO DE GUNBOUND</div><h3>Rembound</h3><p>11 mobiles incluindo Aduka, salas, bots, vento, crateras e lobby social. A versão original depende de SpacetimeDB.</p><div class="tags"><span>Aduka</span><span>11 mobiles</span><span>Salas</span></div><div class="card-bottom"><span class="unavailable">Backend ainda não implantado</span><button type="button" class="details" data-dialog="rembound">Detalhes ↗</button></div></div></article>
-<article class="lab-card highlight" data-state="ready"><div class="card-header"><span>PROJETO / 02</span><span class="chip ready"><i></i> JOGO INSTALADO</span></div><div class="art guntanks"><div class="lines"></div><span class="symbol">◎</span><span class="art-tag">2 OU 4 JOGADORES · 1 / 2 / SS</span></div><div class="card-body"><div class="category">ARTILHARIA CLÁSSICA</div><h3>Guntanks</h3><p>Duelo por turnos com tiros 1, 2 e SS, vento, terreno destrutível, delay e controles clássicos no teclado.</p><div class="tags"><span>2–4 locais</span><span>SS</span><span>Delay</span></div><div class="card-bottom"><a class="play" href="/labs/guntanks/">Jogar no Hover Shot ↗</a><button type="button" class="details" data-dialog="guntanks">Detalhes ↗</button></div></div></article>
-<article class="lab-card" data-state="blocked"><div class="card-header"><span>PROJETO / 03</span><span class="chip pending"><i></i> LICENÇA PENDENTE</span></div><div class="art artillery"><div class="lines"></div><span class="symbol">◈</span><span class="art-tag">MULTIPLAYER P2P · ATÉ 4 PESSOAS</span></div><div class="card-body"><div class="category">COMBATE ONLINE NO NAVEGADOR</div><h3>Artillery P2P</h3><p>Crie uma sala, compartilhe um código e teste até quatro jogadores com conexões WebRTC pelo navegador.</p><div class="tags"><span>Salas</span><span>Mobile</span><span>WebRTC</span></div><div class="card-bottom"><span class="unavailable">Licença de uso pendente</span><button type="button" class="details" data-dialog="artillery">Detalhes ↗</button></div></div></article>
-<article class="lab-card" data-state="blocked"><div class="card-header"><span>PROJETO / 04</span><span class="chip pending"><i></i> LICENÇA PENDENTE</span></div><div class="art scorched"><div class="lines"></div><span class="symbol">✹</span><span class="art-tag">IA · HOT-SEAT · ONLINE</span></div><div class="card-body"><div class="category">ARTILHARIA ESTRATÉGICA</div><h3>Scorched Tanks</h3><p>Jogue com IA ou localmente; o projeto também oferece modo online e simulação determinística.</p><div class="tags"><span>IA</span><span>Hot-seat</span><span>Online</span></div><div class="card-bottom"><span class="unavailable">Licença de uso pendente</span><button type="button" class="details" data-dialog="scorched">Detalhes ↗</button></div></div></article>
-<article class="lab-card" data-state="ready"><div class="card-header"><span>PROJETO / 05</span><span class="chip ready"><i></i> JOGO INSTALADO</span></div><div class="art crater"><div class="star a"></div><div class="star b"></div><div class="projectile"></div><div class="mount m1"></div><div class="mount m2"></div><div class="tank tank1"><i></i></div><div class="tank tank2"><i></i></div><span class="art-tag">PHASER · TERRENO DESTRUTÍVEL</span></div><div class="card-body"><div class="category">BASE TÉCNICA IMPORTADA</div><h3>Craterfall</h3><p>Duelo local de dois jogadores, vento, terreno deformável e nove armas. Já instalado neste domínio.</p><div class="tags"><span>Local</span><span>9 armas</span><span>Phaser</span></div><div class="card-bottom"><a class="play" href="/labs/craterfall/">Jogar aqui ↗</a><button type="button" class="details" data-dialog="craterfall">Detalhes ↗</button></div></div></article>
-<article class="lab-card" data-state="blocked"><div class="card-header"><span>PROJETO / 06</span><span class="chip pending"><i></i> CLIENTE DESKTOP</span></div><div class="art openbound"><div class="lines"></div><span class="symbol">⌘</span><span class="art-tag">C# · MONOGAME · SERVIDORES PRÓPRIOS</span></div><div class="card-body"><div class="category">REFERÊNCIA HISTÓRICA</div><h3>OpenBound</h3><p>Recriação para desktop do GunBound clássico. Não existe versão web executável: exige cliente, serviços e texturas externas.</p><div class="tags"><span>Desktop</span><span>GPL-3.0</span><span>Sem port web</span></div><div class="card-bottom"><span class="unavailable">Não há versão web</span><button type="button" class="details" data-dialog="openbound">Detalhes ↗</button></div></div></article>
+<section class="hero shell">
+<div class="hero-copy">
+<div class="kicker"><span class="diamond"></span> JOGOS · MECÂNICAS · TECNOLOGIAS</div>
+<h1>Várias versões.<br><em>Uma escolha sua.</em></h1>
+<p>Teste diferentes jogos de artilharia, compare os menus e descubra o que vale aproveitar no <strong>Hover Shot</strong>. Nenhuma base será escolhida antes da sua avaliação.</p>
+<div class="hero-bottom"><a class="cta" href="#versoes">Explorar versões <span aria-hidden="true">↗</span></a><span class="hero-stats"><strong>{{COUNT_ALL}}</strong> referências <i></i><strong>{{COUNT_HOSTED}}</strong> jogáveis neste site</span></div>
 </div>
-<div class="notice"><span class="notice-icon">i</span><p><strong>Instalações locais, sem atalhos.</strong> Guntanks e Craterfall estão incluídos no build do Hover Shot. As outras bases ainda têm dependências de servidor, licenças pendentes ou não oferecem versão web.</p><small>HOVER SHOT / REFERÊNCIAS</small></div>
-</section></main>
-<footer class="shell footer"><span>© <span id="year">2026</span> HOVER SHOT</span><span>TESTAR · COMPARAR · DECIDIR</span></footer>
-<dialog id="details-modal" aria-labelledby="modal-title"><div class="modal"><header><span id="modal-label">PROJETO ORIGINAL</span><button type="button" id="close" aria-label="Fechar">✕</button></header><h2 id="modal-title"></h2><p id="modal-description"></p><p class="modal-note" id="modal-note"></p><div id="modal-actions"></div></div></dialog>
-<script src="/assets/home.js" defer></script></body></html>
+<div class="hero-graphic" aria-hidden="true"><div class="orbit orbit-1"></div><div class="orbit orbit-2"></div><div class="orbit orbit-3"></div><div class="core">H<span>✦</span>S</div><span class="trace">＋</span></div>
+</section>
+<section class="catalog shell" id="versoes" aria-labelledby="catalog-title">
+<div class="section-heading"><div><p class="section-eyebrow">ACERVO DE EXPERIMENTOS</p><h2 id="catalog-title">Escolha o jogo <span>{{COUNT_ALL}}</span></h2></div>
+<p>O link externo permanece em todas as versões para comparar com o original.</p></div>
+<div class="toolbar">
+<div class="filters" role="group" aria-label="Filtrar versões">
+<button type="button" class="active" data-filter="all" aria-pressed="true">Todos <small>{{COUNT_ALL}}</small></button>
+<button type="button" data-filter="hosted" aria-pressed="false">Jogáveis aqui <small>{{COUNT_HOSTED}}</small></button>
+<button type="button" data-filter="multiplayer" aria-pressed="false">Com multiplayer <small>{{COUNT_MULTIPLAYER}}</small></button>
+<button type="button" data-filter="references" aria-pressed="false">Referências externas</button>
+<button type="button" data-filter="project" aria-pressed="false">Nosso jogo</button>
+</div>
+<label class="search"><span aria-hidden="true">⌕</span><span class="sr-only">Pesquisar versões</span><input id="catalog-search" type="search" placeholder="Buscar jogo ou tecnologia…" autocomplete="off" maxlength="80"></label>
+</div>
+<div class="catalog-meta"><span id="result-count" aria-live="polite">Mostrando {{COUNT_ALL}} versões</span><span>Jogar aqui ≠ abrir original</span></div>
+<div class="cards" id="version-grid">{{CATALOG_CARDS}}</div>
+<p class="no-results" id="no-results" hidden>Nenhuma versão encontrada. <button type="button" id="clear-filters">Limpar filtros</button></p>
+<div class="footnote" id="como-funciona"><span class="info-mark">i</span><div><strong>Catálogo permanente — nenhuma escolha automática.</strong>
+<p>“Jogar aqui” significa arquivos instalados em hovershot.online. “Abrir original” leva ao autor em nova aba. Algumas demos externas podem estar indisponíveis. Projetos sem licença de redistribuição ficam apenas como referência. Multiplayer próprio exige backend funcional. O Hover Shot em desenvolvimento continuará nesta lista.</p></div></div>
+</section>
+</main>
+<footer class="footer"><div class="shell footer-in"><span>© <span id="year">2026</span> HOVER SHOT</span><span>VERSÕES · COMPARAÇÃO · EVOLUÇÃO</span><a href="https://github.com/hovershotonline/hovershot" target="_blank" rel="noopener noreferrer">Código e documentação ↗</a></div></footer>
+<dialog id="details-modal" aria-labelledby="modal-title"><div class="modal">
+<div class="modal-top"><span>FICHA DA VERSÃO</span><button type="button" id="modal-close" aria-label="Fechar detalhes">✕</button></div>
+<h2 id="modal-title"></h2><p id="modal-description"></p>
+<dl><div><dt>Tecnologias</dt><dd id="modal-tech"></dd></div><div><dt>Licença / direitos</dt><dd id="modal-license"></dd></div></dl>
+<p class="modal-note" id="modal-note"></p><div class="modal-actions" id="modal-actions"></div>
+</div></dialog>
+<script id="catalog-data" type="application/json">{{CATALOG_JSON}}</script>
+<script src="/assets/home.js" defer></script>
+</body></html>
