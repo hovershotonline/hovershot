@@ -39,6 +39,12 @@
 <div class="catalog-meta"><span id="result-count" aria-live="polite">Mostrando {{COUNT_ALL}} versões</span><span>Jogar aqui ≠ abrir original</span></div>
 <div class="cards" id="version-grid">{{CATALOG_CARDS}}</div>
 <p class="no-results" id="no-results" hidden>Nenhuma versão encontrada. <button type="button" id="clear-filters">Limpar filtros</button></p>
+<section class="playtest-summary" aria-labelledby="playtest-summary-title">
+<div class="playtest-heading"><div><p class="section-eyebrow">REGISTRO PESSOAL</p><h3 id="playtest-summary-title">Minhas avaliações</h3><p>Registre o que realmente testou em cada versão. As notas são subjetivas, salvas somente neste navegador e não escolhem automaticamente um motor.</p></div><button type="button" id="copy-playtests" disabled>Copiar resumo</button></div>
+<div class="playtest-results" id="playtest-results"></div>
+<p id="playtest-empty" class="playtest-empty">Você ainda não avaliou nenhuma versão. Abra a ficha de um jogo para registrar sua experiência.</p>
+<p id="playtest-copy-feedback" class="playtest-copy-feedback" role="status" aria-live="polite"></p>
+</section>
 <div class="footnote" id="como-funciona"><span class="info-mark">i</span><div><strong>Catálogo permanente — nenhuma escolha automática.</strong>
 <p>“Jogar aqui” significa arquivos instalados em hovershot.online. “Abrir original” leva ao autor em nova aba. Algumas demos externas podem estar indisponíveis. Projetos sem licença de redistribuição ficam apenas como referência. Multiplayer próprio exige backend funcional. O Hover Shot em desenvolvimento continuará nesta lista.</p></div></div>
 </section>
@@ -48,8 +54,24 @@
 <div class="modal-top"><span>FICHA DA VERSÃO</span><button type="button" id="modal-close" aria-label="Fechar detalhes">✕</button></div>
 <h2 id="modal-title"></h2><p id="modal-description"></p>
 <dl><div><dt>Tecnologias</dt><dd id="modal-tech"></dd></div><div><dt>Licença / direitos</dt><dd id="modal-license"></dd></div></dl>
-<p class="modal-note" id="modal-note"></p><div class="modal-actions" id="modal-actions"></div>
+<p class="modal-note" id="modal-note"></p>
+<section class="playtest-editor" aria-labelledby="playtest-editor-title">
+<h3 id="playtest-editor-title">Minha avaliação desta versão</h3>
+<p>Avalie apenas aspectos que você testou. Zero significa “não testado”, especialmente em partidas online.</p>
+<form id="playtest-form">
+<div class="playtest-fields">
+<label class="playtest-field" for="playtest-visual"><span>Visual e interface <output for="playtest-visual">Não testado</output></span><input id="playtest-visual" data-score-key="visual" type="range" min="0" max="5" step="1" value="0"></label>
+<label class="playtest-field" for="playtest-controles"><span>Controles e mira <output for="playtest-controles">Não testado</output></span><input id="playtest-controles" data-score-key="controles" type="range" min="0" max="5" step="1" value="0"></label>
+<label class="playtest-field" for="playtest-fisica"><span>Tiros e física <output for="playtest-fisica">Não testado</output></span><input id="playtest-fisica" data-score-key="fisica" type="range" min="0" max="5" step="1" value="0"></label>
+<label class="playtest-field" for="playtest-online"><span>Partida online real <output for="playtest-online">Não testado</output></span><input id="playtest-online" data-score-key="online" type="range" min="0" max="5" step="1" value="0"></label>
+</div>
+<label class="playtest-note" for="playtest-note">Observações do teste<textarea id="playtest-note" rows="3" maxlength="600" placeholder="O que funcionou? Como foi a jogabilidade? O que falta?"></textarea></label>
+<div class="playtest-editor-actions"><button type="submit" class="playtest-save">Salvar avaliação</button><button type="button" id="playtest-remove" class="playtest-remove" disabled>Excluir avaliação</button></div>
+<p id="playtest-feedback" class="playtest-feedback" role="status" aria-live="polite"></p>
+</form>
+</section>
+<div class="modal-actions" id="modal-actions"></div>
 </div></dialog>
 <script id="catalog-data" type="application/json">{{CATALOG_JSON}}</script>
-<script src="/assets/home.js" defer></script>
+<script type="module" src="/assets/home.js"></script>
 </body></html>

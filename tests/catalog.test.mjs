@@ -59,3 +59,16 @@ test('fonte original de cada motor importado fixada via submodulos',()=>{
  for(const path of ['rembound','guntanks','artillery','scorched-tanks','openbound'])assert.ok(modules.includes('sources/originals/'+path));
  assert.ok(modules.includes('sources/engines/hillshot'));
 });
+
+
+test('registro pessoal de playtest fica no navegador, com critérios não testados',()=>{
+ assert.match(html,/id="playtest-summary-title"/);
+ for(const id of ['visual','controles','fisica','online']) assert.match(html,new RegExp('data-score-key="'+id+'"'));
+ assert.match(html,/id="playtest-note"[^>]*maxlength="600"/);
+ assert.match(html,/id="playtest-results"/);
+ assert.match(html,/id="copy-playtests"/);
+ assert.match(html,/type="module" src="\/assets\/home\.js"/);
+ assert.match(js,/localStorage\.setItem/);
+ assert.match(js,/loadAssessment\(item\.id\)/);
+ assert.doesNotMatch(js,/fetch\(|XMLHttpRequest/);
+});
