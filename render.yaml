@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: hover-shot-ws-lab
+    runtime: node
+    plan: free
+    region: virginia
+    rootDir: services/multiplayer
+    buildCommand: npm install --no-audit --no-fund --ignore-scripts
+    startCommand: npm start
+    healthCheckPath: /healthz
+    autoDeployTrigger: checksPass
+    maxShutdownDelaySeconds: 30
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: LAB_ACCESS_TOKEN
+        sync: false
