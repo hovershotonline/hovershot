@@ -92,3 +92,25 @@ jobs:
           git -c user.name="hover-shot-actions" -c user.email="actions@users.noreply.github.com" commit -m "build: site Hover Shot ${GITHUB_SHA}"
           git push origin HEAD:refs/heads/site-build
           echo "RESULTADO=BRANCH_SITE_BUILD_ATUALIZADA"
+
+  hillshot-multiplayer-qa:
+    name: Engine web - 2 jogadores e tiro (WS localhost)
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v4
+      - name: Importar Hillshot no commit fixado
+        run: |
+          git submodule update --init --depth 1 -- sources/engines/hillshot
+          test "$(git -C sources/engines/hillshot rev-parse HEAD)" = "4014612e9735b4e9c74dab94abcd941f2301630c"
+          test -s sources/engines/hillshot/LICENSE
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Instalar apenas dependencias para o runtime
+        run: npm ci --omit=dev --no-audit --no-fund --prefix sources/engines/hillshot
+      - name: Validar sintaxe e testar jogo em localhost
+        run: |
+          node --check sources/engines/hillshot/server/server.js
+          node --check scripts/qa-hillshot.cjs
+          node scripts/qa-hillshot.cjs
