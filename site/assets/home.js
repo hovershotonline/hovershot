@@ -1,4 +1,4 @@
-import { criteria, sanitizeRecord, normalizeRecords, summarize, makeReport } from './playtest-model.mjs';
+import { criteria, sanitizeRecord, normalizeRecords, summarize, makeReport } from './playtest-model.js';
 'use strict';
 (() => {
   let entries;

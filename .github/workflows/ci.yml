@@ -33,7 +33,7 @@ jobs:
       - name: Validar sintaxe da interface e das avaliações
         run: |
           node --check site/assets/home.js
-          node --check site/assets/playtest-model.mjs
+          node --check site/assets/playtest-model.js
       - name: Validar script de importação
         run: node --check scripts/package-guntanks.mjs
       - name: Validar configuracao e script de deploy (sem credenciais)
@@ -42,6 +42,8 @@ jobs:
           node --test tests/deploy-config.test.mjs
       - name: Compilar hub e jogos locais
         run: npm run build
+      - name: Testar formatos e URLs com versionamento dos assets
+        run: node --test tests/build-assets.test.mjs
       - name: Verificar artefatos
         run: |
           test -s dist/index.html
