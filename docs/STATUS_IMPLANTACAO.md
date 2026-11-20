@@ -105,3 +105,12 @@ O proprietário cadastrou `HOVERSHOT_DEPLOY_SSH_PRIVATE_KEY`. O assistente reexe
 **Teste visual funcional externo pós-publicação:** auditoria isolada [44691499304](https://github.com/hovershotonline/hovershot/actions/runs/44691499304) rodou Chrome Headless por CDP contra o domínio real e concluiu `RESULTADO=HOME_LAYOUT_BROWSER_OK` com `success`. Desktop 1440 px: 13 cards e grade CSS 4 colunas, 2 após filtro hospedados, modal abre e fecha, módulo carregado, CSS/JS versionados, sem overflow horizontal. Mobile 390 px: grade CSS 1 coluna, 13 cards visíveis, `scrollWidth=390`, filtros sem overflow, card mais à direita = 373 px.
 
 **Limite da evidência:** os testes automatizados não avaliam a aparência subjetiva nem todos os passos de persistência da avaliação (salvar, recarregar e excluir); esses casos seguem pendentes de QA manual. O smoke do Hillshot permanece localhost e não comprova multiplayer real entre redes.
+
+
+## Render WebSocket — infraestrutura de homologação (20/11/2026)
+
+**Decisão:** Render para WSS remoto e Hostinger para cliente e catálogo. Separação de runtime: Node.js isolado em services/multiplayer, sem dependência de motor proprietário e sem mudanças de frontend Hostinger. Render Blueprint em render.yaml com Web Service Free Virginia, rootDir, health /healthz e segredo configurado na conta Render (sync: false).
+
+**Código verificado via CI:** GitHub Actions [44826886870](https://github.com/hovershotonline/hovershot/actions/runs/44826886870) terminou em success (4/4 testes). Casos: HTTP health/UI, segredo e Origin, dois jogadores com sala, comando de tiro replicado e alternância, bloqueio de terceiro e fora do turno, limite de mensagens. Esta evidência é **localhost do runner**, não implantação no Render e não jogo com física.
+
+**Estado pendente:** vincular Render, implantar Web Service, testar WSS real entre redes, medir RTT no Brasil, definir persistência e autenticação individuais antes de produção; registrar URL real sem segredos. A escolha do motor permanece em aberto.

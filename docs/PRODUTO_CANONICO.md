@@ -18,6 +18,12 @@ Priorizar a importação de uma implementação web **já jogável e com multipl
 - Depois de validar a partida, evoluir móveis com ataques distintos, delay e tiros complexos; até oito jogadores conforme capacidade real.
 - Código e instalações versionados no GitHub; logs compactos, sem acúmulo de backups na Hostinger; assets próprios ou licenciados.
 
+## Infraestrutura — escolha aprovada (20/11/2026)
+
+**Decisão do proprietário:** opção B. O Cloud Startup continua responsável pelo frontend do Hover Shot, catálogo e jogos atuais; **Render** hospeda um serviço Node.js/WebSocket externo. Esta decisão é de **infraestrutura**, não escolha de motor de combate. Um laboratório de rede independente existe no repositório em services/multiplayer; nenhum clone do DragonBound foi importado. A UI de teste pode ser publicada pelo Render, sem alterar a home atual. Ver [RENDER_MULTIPLAYER.md](RENDER_MULTIPLAYER.md).
+
+**Limite factual:** os testes locais no GitHub Actions (run 44826886870) verificaram dois jogadores, salas, turnos e comando de tiro, sem física nem jogo real. O Render ainda precisa ser vinculado à conta, serviço implantado e homologado entre navegadores em redes distintas. O serviço Free hiberna e perde estado em memória; nunca anunciar multiplayer persistente em produção sem reconexão/persistência e identidade dos jogadores.
+
 ## Infraestrutura — restrição verificada
 
 A [Hostinger informa](https://www.hostinger.com/support/hostinger-node-js-limits-for-web-and-cloud-plans/) que hospedagem Web/Cloud **não aceita WebSocket de entrada**, mesmo para Node.js. Logo, copiar o frontend à webroot **não cria multiplayer**. Solução a validar: frontend estático em `hovershot.online/play/`, backend WebSocket persistente sob controle do proprietário em VPS (com TLS, domínio controlado e autenticação), sem alterar outros sites. A implementação original do Hillshot conecta WebSocket em `location.host` e precisará de adaptação do endpoint antes de distribuir frontend e backend em servidores distintos.
