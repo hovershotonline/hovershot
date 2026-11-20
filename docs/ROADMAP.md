@@ -1,3 +1,9 @@
+> **INCREMENTO DE HOMOLOGACAO (20/11/2026):** QA remoto HTTPS/WSS para o candidato Hillshot preparado em workflow manual, reutilizando testes de sala e tiro sem selecao de motor e sem publicar backend. Esta entrega **nao e uma partida online pronta**: infraestrutura WSS privada e playtest humano em redes distintas continuam pendentes. [Procedimento e gates](QA_MULTIPLAYER_REMOTO.md).
+>
+> - [x] Instrumentar smoke externo sem ativar deploy ou mexer na home.
+> - [ ] Provisionar backend isolado licenciado sob TLS/autenticacao no dominio do projeto.
+> - [ ] Validar conexao externa do runner e dois navegadores de redes distintas.
+
 > **DEFINIÇÃO DE DEPLOY (20/11/2026):** o GitHub Actions agora possui job `deploy-hostinger`, após `build` + `hillshot-multiplayer-qa` + `preparar-publicacao`. O deploy automático só opera após cadastro do segredo SSH (não acessível ao conector GitHub do ChatGPT). Ação em `main` deve poder publicar o site sem comando PowerShell repetido. [Documentação](DEPLOY_GITHUB_ACTIONS.md).
 
 ## Entrega CI/CD — acompanhamento
