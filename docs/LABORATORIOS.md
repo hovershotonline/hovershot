@@ -47,6 +47,6 @@ Consulte [DEPLOY.md](DEPLOY.md). A branch `site-build` está verificada, mas o d
 
 ## Priorização atual — 19/11/2026
 
-O proprietário determinou comparar versões originais antes de novas adaptações. Seis opções disponíveis no catálogo da home; ver [PROJETOS_ORIGINAIS.md](PROJETOS_ORIGINAIS.md). Cinquenta por cento? **Não:** são cinco projetos adicionais apontados como submódulos Git; só Craterfall já está copiado para o build e hospedado no domínio. Os quatro endereços externos abrem jogos mantidos pelos autores; OpenBound é desktop. A antiga lista "LAB 02 planejado / LAB 03 planejado" era um roadmap e não catálogo de jogos prontos; foi removida da home para não confundir.
+O proprietário determinou comparar versões originais antes de novas adaptações. Seis opções disponíveis no catálogo da home; ver [PROJETOS_ORIGINAIS.md](PROJETOS_ORIGINAIS.md). As cinco bases adicionais são apontadas como submódulos Git; só Craterfall já está copiado para o build e hospedado no domínio. Os quatro endereços externos abrem jogos mantidos pelos autores; OpenBound é desktop. A antiga lista "LAB 02 planejado / LAB 03 planejado" era um roadmap e não catálogo de jogos prontos; foi removida da home para não confundir.
 
 **Nota técnica:** `site/labs/arena/core.js` é um experimento não integrado e não incluído no build público; não tratá-lo como jogo original ou pronto.
