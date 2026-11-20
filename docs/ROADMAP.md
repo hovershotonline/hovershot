@@ -1,3 +1,16 @@
+> **GATE PRIMÁRIO — homologação online, não localhost (19/11/2026):** o proprietário exigiu **importar candidatos para jogar no navegador sob Hover Shot com um backend online real**, inclusive com amigos em outras redes, ANTES de escolher. Um teste local ou CI não representa operação do servidor. Nenhuma base está selecionada. Implantar homologação **protegida e de acesso restrito**, respeitando as permissões de código/asset; sem licença, proteção por senha não cria autorização. Ver [HOMOLOGACAO_ONLINE.md](HOMOLOGACAO_ONLINE.md).
+
+## Fase vigente — comparação real em servidor
+
+- [x] Registrar plano de homologação com servidor real, WebSocket/TLS, sala e jogos com amigos.
+- [ ] Identificar capacidade de servidor persistente para vários candidatos isolados e configurar acesso de testes no domínio.
+- [ ] Montar e publicar primeiro candidato **licenciado** de ponta a ponta, sem alterar a produção existente.
+- [ ] Testar com dois usuários de redes diferentes, reportando experiência visual e de jogo + indicadores de rede.
+- [ ] Repetir para os candidatos permitidos; somente então receber a escolha do proprietário.
+- [ ] Para projetos sem licença clara, obter permissão de avaliação/hosting ou esclarecer fundamento legal antes de copiar para servidor de terceiros.
+
+---
+
 > **RETIFICAÇÃO DE DECISÃO (19/11/2026):** O proprietário **não escolheu nenhum motor**. A importação técnica do Hillshot foi feita antecipadamente pelo assistente; o status correto é **candidato em avaliação**, nunca base aprovada. Não executar implantação, refatoração ou customização de Hillshot (ou outra engine) como motor do produto antes de decisão expressa. O objetivo confirmado permanece jogo **somente no navegador, em `hovershot.online`, multiplayer online com amigos**.
 
 ## Gate vigente — escolher a experiência e o motor antes da implementação

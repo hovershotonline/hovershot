@@ -4,7 +4,7 @@
 
 **Candidato importado tecnicamente, NÃO escolhido pelo proprietário como motor do jogo:** [Hillshot](https://github.com/m-esm/hillshot), sob licença MIT, código-fonte de combate e servidor multiplayer WebSocket. Versão original fixada em `4014612e9735b4e9c74dab94abcd941f2301630c`, presente em `sources/engines/hillshot`. Arquivos de arte Kenney declarados CC0. A importação e o teste automatizado não constituem escolha do motor. A aprovação da experiência pelo proprietário está pendente.
 
-[Definição canônica](docs/PRODUTO_CANONICO.md) · [Plano de importação](docs/IMPORTACAO_HILLSHOT.md) · [Roadmap](docs/ROADMAP.md)
+[Definição canônica](docs/PRODUTO_CANONICO.md) · [**Homologação online antes da escolha**](docs/HOMOLOGACAO_ONLINE.md) · [Plano de importação](docs/IMPORTACAO_HILLSHOT.md) · [Roadmap](docs/ROADMAP.md)
 
 **Status real:** o código do jogo candidato foi integrado por referência imutável ao GitHub; **não está online sob o Hover Shot**. Os laboratórios Guntanks/Craterfall são comparações históricas. O servidor de partidas não foi implantado. Não confundir CI, importação ou HTTP 200 com multiplayer publicado.
 

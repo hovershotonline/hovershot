@@ -1,3 +1,5 @@
+> **IMPORTANTE:** teste CI localhost **não é homologação online**. A avaliação do proprietário deve usar servidor WebSocket real, HTTPS, dois jogadores em redes diferentes e frontend em domínio Hover Shot. Hillshot continua **candidato não escolhido**. [Plano de homologação](HOMOLOGACAO_ONLINE.md).
+
 > **ESTADO DE DECISÃO (19/11/2026):** Hillshot é um **candidato não aprovado**. Não promover, adaptar ou instalar em produção como jogo Hover Shot sem o proprietário escolher a base. CI confirma apenas funcionamento técnico em localhost.
 
 # Hillshot: base web multiplayer importada para avaliação

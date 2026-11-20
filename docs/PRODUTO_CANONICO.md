@@ -24,6 +24,9 @@ A [Hostinger informa](https://www.hostinger.com/support/hostinger-node-js-limits
 
 **Nenhum motor de jogo foi selecionado pelo proprietário.** Importar um projeto open source, executar CI ou comprovar conexões WebSocket é apenas pesquisa, não decisão de produto. Antes de desenvolver um fork do Hillshot ou substituir produção, oferecer comparativo de bases que possam ser usadas legalmente, com teste de jogabilidade isolado, requisitos de rede, custo e fidelidade; apresentar alternativas e aguardar escolha explícita. Não tratar requisitos fixados de navegador, domínio e multiplayer como autorização para selecionar motor.
 
+
+**CRITÉRIO DE SELEÇÃO DO PROPRIETÁRIO:** cada candidato deve ser testado em **homologação online real** com servidor próprio e usuários externos, sob o domínio Hover Shot, antes da escolha; smoke CI localhost, um frontend em HTTP 200 ou demo externa não bastam. Veja [HOMOLOGACAO_ONLINE.md](HOMOLOGACAO_ONLINE.md). O objetivo não é apenas técnica, mas gameplay e operação do servidor.
+
 ## Estado e etapas
 
 - [x] Confirmado objetivo somente navegador e domínio Hover Shot.
