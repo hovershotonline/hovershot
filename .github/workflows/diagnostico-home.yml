@@ -1,0 +1,55 @@
+name: Diagnostico isolado da home (sem deploy)
+on:
+  push:
+    branches:
+      - audit/home-layout-20261120
+permissions:
+  contents: read
+jobs:
+  pagina-publica:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - name: Capturar status, tipos MIME e cache dos recursos reais
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+          base="https://hovershot.online"
+          for path in "/" "/assets/home.css" "/assets/home.js" "/assets/playtest-model.mjs"; do
+            safe="$(echo "$path" | sed 's,[^a-zA-Z0-9],_,g')"
+            url="$base$path?audit=$GITHUB_SHA"
+            echo "==== RECURSO=$path ===="
+            curl --fail --show-error --location --max-time 35 -D "$RUNNER_TEMP/$safe.headers" -o "$RUNNER_TEMP/$safe.body" "$url"
+            grep -iE '^HTTP/|^content-type:|^cache-control:|^etag:|^content-length:|^content-encoding:|^x-content-type-options:' "$RUNNER_TEMP/$safe.headers" | tr -d '\r' || true
+            echo "BYTES=$(wc -c < "$RUNNER_TEMP/$safe.body")"
+            head -c 120 "$RUNNER_TEMP/$safe.body"
+            echo
+          done
+          echo "==== CSS_COMPORTAMENTO ===="
+          if grep -Fq '.version-card' "$RUNNER_TEMP/_assets_home_css.body"; then echo "CSS_CARTOES=OK"; else echo "CSS_CARTOES=AUSENTE"; fi
+          if grep -Fq '.playtest-summary' "$RUNNER_TEMP/_assets_home_css.body"; then echo "CSS_AVALIACOES=OK"; else echo "CSS_AVALIACOES=AUSENTE"; fi
+          if grep -Fq 'id="version-grid"' "$RUNNER_TEMP/_.body"; then echo "HTML_CATALOGO=OK"; else echo "HTML_CATALOGO=AUSENTE"; fi
+          if grep -Fq 'src="/assets/home.js"' "$RUNNER_TEMP/_.body"; then echo "HTML_SCRIPT=OK"; else echo "HTML_SCRIPT=AUSENTE"; fi
+      - name: Capturar desktop e mobile no Chromium
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+          browser="$(command -v google-chrome || command -v chromium || command -v chromium-browser || true)"
+          if [[ -z "$browser" ]]; then echo "CHROME_INDISPONIVEL"; exit 0; fi
+          "$browser" --version
+          for screen in desktop mobile; do
+            if [[ "$screen" == desktop ]]; then size="1440,1000"; else size="390,844"; fi
+            echo "==== SCREENSHOT=$screen ===="
+            timeout 50 "$browser" --headless --no-sandbox --disable-gpu --disable-dev-shm-usage --hide-scrollbars --virtual-time-budget=5000 --window-size="$size" --screenshot="$RUNNER_TEMP/home-$screen.png" "https://hovershot.online/?layoutaudit=$GITHUB_SHA" > "$RUNNER_TEMP/chrome-$screen.log" 2>&1 || true
+            if [[ -s "$RUNNER_TEMP/home-$screen.png" ]]; then echo "SCREENSHOT_$screen=OK"; else echo "SCREENSHOT_$screen=FALHOU"; fi
+            grep -iE 'Failed to load|MIME type|Refused to execute|ERR_|script error' "$RUNNER_TEMP/chrome-$screen.log" | head -15 || true
+          done
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: diagnostico-home-layout
+          path: |
+            ${{ runner.temp }}/*.headers
+            ${{ runner.temp }}/home-*.png
+            ${{ runner.temp }}/chrome-*.log
+          retention-days: 1
