@@ -49,5 +49,6 @@ try{
 }finally{
  ws?.close();
  chrome.kill('SIGTERM');
- rmSync(dir,{recursive:true,force:true});
+ await delay(500);
+ try{rmSync(dir,{recursive:true,force:true,maxRetries:5,retryDelay:200});}catch(err){console.warn('LIMPEZA_TEMPORARIA_PENDENTE='+err.code);}
 }
