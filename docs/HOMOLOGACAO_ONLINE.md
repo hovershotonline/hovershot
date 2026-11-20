@@ -1,3 +1,5 @@
+> **QA de rede preparado:** [QA_MULTIPLAYER_REMOTO.md](QA_MULTIPLAYER_REMOTO.md) descreve a execucao manual de HTTPS + WSS e sala/tiro em servidor de teste. Nao prova servidor implantado, nao substitui playtest humano.
+
 # Plano canônico de homologação online — Hover Shot
 
 **Decisão metodológica registrada em 19/11/2026, a partir da crítica explícita do proprietário.**

@@ -1,0 +1,62 @@
+name: Hover Shot - Homologacao Multiplayer Remota (manual)
+on:
+  workflow_dispatch:
+    inputs:
+      host:
+        description: "Host de teste (ex.: homologacao.hovershot.online)"
+        required: true
+        type: string
+      prefix:
+        description: "Prefixo isolado no proxy (opcional, ex.: /hillshot)"
+        required: false
+        default: ""
+        type: string
+permissions:
+  contents: read
+jobs:
+  smoke-wss-externo:
+    name: Validar HTTPS + WSS + sala + tiro via internet
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - name: Validar configuracao (sem revelar credenciais)
+        env:
+          QA_HOST: ${{ inputs.host }}
+          QA_TOKEN: ${{ secrets.HOVERSHOT_HOMOLOG_QA_TOKEN }}
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+          if [[ ! "$QA_HOST" =~ ^homologacao(-[a-z0-9-]+)?\.hovershot\.online$ ]]; then
+            echo "::error::Host invalido: somente homologacao*.hovershot.online"
+            exit 2
+          fi
+          if [[ ${#QA_TOKEN} -lt 24 ]]; then
+            echo "::error::Segredo HOVERSHOT_HOMOLOG_QA_TOKEN ausente ou invalido"
+            exit 3
+          fi
+          echo "CONFIGURACAO_QA=VALIDADA"
+      - uses: actions/checkout@v4
+      - name: Importar apenas candidato Hillshot (SHA fixado)
+        shell: bash
+        run: |
+          set -Eeuo pipefail
+          git submodule update --init --depth 1 -- sources/engines/hillshot
+          test "$(git -C sources/engines/hillshot rev-parse HEAD)" = "4014612e9735b4e9c74dab94abcd941f2301630c"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Instalar somente dependencias do cliente QA
+        run: npm ci --omit=dev --no-audit --no-fund --prefix sources/engines/hillshot
+      - name: Verificar sintaxe
+        run: node --check scripts/qa-hillshot.cjs
+      - name: Testar multiplayer remoto em ambiente isolado
+        env:
+          HOVERSHOT_QA_REMOTE_HOST: ${{ inputs.host }}
+          HOVERSHOT_QA_REMOTE_PREFIX: ${{ inputs.prefix }}
+          HOVERSHOT_QA_ACCESS_TOKEN: ${{ secrets.HOVERSHOT_HOMOLOG_QA_TOKEN }}
+        run: |
+          set -Eeuo pipefail
+          node scripts/qa-hillshot.cjs
+          echo "QA_REDE=GITHUB_RUNNER_PARA_SERVIDOR_EXTERNO" >> "$GITHUB_STEP_SUMMARY"
+          echo "JOGADORES=2_CLIENTES_AUTOMATIZADOS" >> "$GITHUB_STEP_SUMMARY"
+          echo "PLAYTEST_HUMANO_EM_REDES_DISTINTAS=PENDENTE" >> "$GITHUB_STEP_SUMMARY"
