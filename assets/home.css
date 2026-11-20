@@ -146,3 +146,44 @@ dialog::backdrop{background:#020a13bb;backdrop-filter:blur(5px)}
  .modal{padding:20px}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+
+
+/* Avaliações privadas do playtest: isoladas da lógica dos jogos. */
+.playtest-summary{margin:28px 0 24px;padding:24px;border:1px solid #34504a;border-radius:13px;background:#112620}
+.playtest-heading{display:flex;justify-content:space-between;align-items:start;gap:18px}
+.playtest-heading h3{margin:5px 0 6px;font-size:21px;letter-spacing:-.6px}
+.playtest-heading p:not(.section-eyebrow){font-size:12px;line-height:1.6;color:#adbec0;max-width:760px}
+.playtest-heading button{flex-shrink:0;border:1px solid #8ba965;background:#c8fb76;color:#18251b;border-radius:8px;padding:11px 14px;font-size:11px;font-weight:800}
+.playtest-heading button:disabled{opacity:.45;cursor:not-allowed}
+.playtest-results{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:10px;margin-top:14px}
+.playtest-result{text-align:left;display:grid;gap:7px;border:1px solid #38574c;background:#182f2a;color:#eff7f1;padding:15px;border-radius:9px;min-width:0}
+.playtest-result:hover{border-color:#baf585}
+.playtest-result strong{font-size:13px;overflow-wrap:anywhere}
+.playtest-result>span{font-size:20px;font-weight:800;color:#cbfb78}
+.playtest-result small{font-size:10px;color:#a9bfb5}
+.playtest-empty,.playtest-copy-feedback{font-size:12px;line-height:1.6;color:#a9bbb5}
+.playtest-copy-feedback:empty,.playtest-feedback:empty{display:none}
+.playtest-editor{margin-top:19px;border-top:1px solid #34515a;padding-top:18px}
+.playtest-editor h3{margin:0;font-size:15px}
+.playtest-editor>p{font-size:11px;margin:8px 0 13px}
+.playtest-fields{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}
+.playtest-field{display:block;border:1px solid #34515a;padding:11px;border-radius:8px;min-width:0}
+.playtest-field>span{display:flex;justify-content:space-between;align-items:start;gap:6px;flex-wrap:wrap;font-size:11px;font-weight:700}
+.playtest-field output{color:#c8fb76;font-weight:800}
+.playtest-field input{width:100%;accent-color:#c8fb76;margin:13px 0 2px}
+.playtest-note{display:block;margin-top:12px;font-size:11px;font-weight:700}
+.playtest-note textarea{display:block;width:100%;margin-top:7px;resize:vertical;min-height:68px;max-height:190px;border:1px solid #34515a;background:#11222d;color:#eaf4f4;border-radius:8px;padding:11px;font:inherit;line-height:1.5}
+.playtest-note textarea:focus-visible{outline:2px solid #cbfb72;outline-offset:2px}
+.playtest-editor-actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:12px}
+.playtest-editor-actions button{border-radius:8px;padding:11px 14px;font-size:11px;font-weight:800}
+.playtest-save{border:0;color:#142019;background:#c8fb76}
+.playtest-remove{border:1px solid #52666a;background:transparent;color:#cad5d6}
+.playtest-remove:disabled{opacity:.4;cursor:not-allowed}
+.playtest-feedback{color:#c8fb76;font-size:11px!important}
+dialog{max-height:min(90dvh,850px);overflow-y:auto}
+@media(max-width:580px){
+ .playtest-summary{padding:16px}
+ .playtest-heading{flex-direction:column}
+ .playtest-heading button{width:100%}
+ .playtest-fields{grid-template-columns:1fr}
+}
