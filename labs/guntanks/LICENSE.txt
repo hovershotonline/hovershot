@@ -1,0 +1,5 @@
+Guntanks original project by masag0: https://github.com/masag0/Guntanks
+Source commit: 072c2312abec19089149c211751ffec7311d69d4
+The original package.json declares license: ISC.
+This is the original game JavaScript, CSS, gameplay and required runtime files, apart from a Hover Shot return link.
+Gunbound-specific icon assets are deliberately excluded because not used by runtime.
