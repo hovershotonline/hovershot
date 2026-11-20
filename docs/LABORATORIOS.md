@@ -1,3 +1,5 @@
+> **RECONTEXTUALIZAÇÃO — 20/11/2026:** esta documentação deixa de tratar laboratórios como arquivo histórico. O proprietário determinou **catálogo permanente de várias versões na home de `hovershot.online`**, com Hover Shot em desenvolvimento na lista e dois links independentes quando houver uma cópia no domínio. Toda referência conserva link externo. Ler [CATALOGO_PERMANENTE.md](CATALOGO_PERMANENTE.md) como decisão prioritária; trechos abaixo são histórico operacional.
+
 > **DOCUMENTO HISTÓRICO:** a prioridade vigente é Hover Shot **somente navegador e multiplayer em `hovershot.online`**, não Windows nem catálogo de links. Consulte [PRODUTO_CANONICO.md](PRODUTO_CANONICO.md).
 
 > **STATUS HISTÓRICO:** esta organização de `/labs/` documenta **experimentos de navegador**, não o produto que o proprietário quer construir. A decisão vigente é **Hover Shot como jogo instalável para Windows, com servidor multiplayer próprio**, em [PRODUTO_CANONICO.md](PRODUTO_CANONICO.md). Preservar laboratórios sem tratá-los como produto final.

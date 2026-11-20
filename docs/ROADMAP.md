@@ -1,3 +1,17 @@
+> **DECISÃO DO PROPRIETÁRIO — 20/11/2026, ATÉ SEGUNDA ORDEM:** `hovershot.online` manterá **catálogo permanente de múltiplas versões**; a versão Hover Shot em desenvolvimento será uma opção da lista, mesmo após escolha do motor. Todos os cards têm link externo do original, inclusive quando a cópia está no site. Projetos sem licença ficam como links externos, não como cópias instaladas. Não remover catálogo em prol de uma única versão. Ver [CATALOGO_PERMANENTE.md](CATALOGO_PERMANENTE.md).
+
+## Entrega imediata — home das versões
+- [x] Registrar 13 versões em `site/catalog.json` com link externo obrigatório e classificação correta de hospedagem/licença.
+- [x] Criar card fixo para Hover Shot em desenvolvimento, sem anunciar motor selecionado.
+- [x] Adicionar duas ações independentes nos cards hospedados: `Jogar aqui` e `Abrir original`.
+- [x] Criar busca, filtros, ficha técnica em modal e build estático a partir da fonte única.
+- [ ] Validar CI do catálogo, testes de links e geração de `site-build`.
+- [ ] **Publicar home incrementada na Hostinger** e verificar HTTP, contagem e links, preservando Guntanks, Craterfall, `.env` e MySQL.
+- [ ] Criar e homologar ambientes realmente online para candidatos licenciados à medida que forem autorizados; não é requisito para manter link externo.
+- [ ] Manter versões e histórico no site permanentemente até ordem contrária do usuário.
+
+---
+
 > **GATE PRIMÁRIO — homologação online, não localhost (19/11/2026):** o proprietário exigiu **importar candidatos para jogar no navegador sob Hover Shot com um backend online real**, inclusive com amigos em outras redes, ANTES de escolher. Um teste local ou CI não representa operação do servidor. Nenhuma base está selecionada. Implantar homologação **protegida e de acesso restrito**, respeitando as permissões de código/asset; sem licença, proteção por senha não cria autorização. Ver [HOMOLOGACAO_ONLINE.md](HOMOLOGACAO_ONLINE.md).
 
 ## Fase vigente — comparação real em servidor

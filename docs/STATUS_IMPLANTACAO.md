@@ -57,3 +57,9 @@ Proprietário confirmou que experimentou o Rembound, com percepção de que o si
 ## Base web para Hover Shot online — 19/11/2026
 
 **Nova decisão explícita:** somente browser, no domínio `hovershot.online`, multiplayer real com amigos; cliente Windows rejeitado. Hillshot (MIT) foi importado como submódulo em `sources/engines/hillshot`, SHA `4014612e9735b4e9c74dab94abcd941f2301630c`. Smoke GitHub Actions no commit `6d4b0b34957eb7d6383b88ad986620ffb5ca688b`, run `44661916212`, job específico **success**: dois WebSockets locais, sala, start, tiro replicado. **Servidor online não implantado.** Hospedagem Hostinger Cloud não suporta WebSocket inbound, assim será necessário backend persistente externo ao plano Cloud com WSS em domínio controlado. Site atual não foi modificado por esta importação. Detalhes em [IMPORTACAO_HILLSHOT.md](IMPORTACAO_HILLSHOT.md).
+
+## Catálogo permanente ampliado — desenvolvimento de 20/11/2026
+
+**Solicitação explícita:** manter várias versões no site indefinidamente, inclusive a versão Hover Shot em desenvolvimento como uma opção. Toda versão tem link externo do original para comparação, mesmo que esteja instalada. Projetos sem licença identificada permanecem acessíveis via link externo, sem cópia no domínio. O proprietário não escolheu motor definitivo. Registro em `docs/CATALOGO_PERMANENTE.md` e `site/catalog.json`.
+
+Implementação de código: galeria com **13 opções**, busca/filtros e modais de tecnologia/licença, HTML gerado estaticamente de catálogo JSON, testes que exigem todos os links e limitam as instalações marcadas a **Guntanks e Craterfall**. Originais externos são abertos em nova aba. **Esta seção registra código versionado; não é prova de deploy Hostinger.** CI/branch `site-build` e publicação devem ter evidências separadas; arquivos públicos do servidor não foram alterados por operação GitHub.

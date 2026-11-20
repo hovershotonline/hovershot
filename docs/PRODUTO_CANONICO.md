@@ -1,3 +1,5 @@
+> **REGRA VIGENTE ATÉ SEGUNDA ORDEM (20/11/2026):** manter **várias versões no catálogo de `hovershot.online`**, com Hover Shot próprio como um card e **link externo original SEMPRE em cada opção**, inclusive para jogos instalados. A seleção do motor acontece após comparação, nunca antes. Esta regra é detalhada em [CATALOGO_PERMANENTE.md](CATALOGO_PERMANENTE.md) e supera qualquer plano anterior de interface com um jogo só.
+
 # Hover Shot — finalidade canônica vigente
 
 **Decisão expressa do proprietário (19/11/2026):** o Hover Shot será um jogo de artilharia **100% online no navegador, em `hovershot.online`, multiplayer com amigos**, com código e backend sob controle do proprietário. **Nenhum cliente Windows, aplicativo ou instalador desktop.** Propostas anteriores de Windows/Godot e Hedgewars desktop foram rejeitadas. Este documento substitui os textos conflitantes anteriores.

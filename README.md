@@ -1,3 +1,11 @@
+# Hover Shot — catálogo permanente de jogos e versões
+
+**Decisão do proprietário, válida até segunda ordem:** `https://hovershot.online/` deve **sempre** manter várias versões e referências disponíveis na home; o Hover Shot em desenvolvimento é **um dos cards**, não substitui o acervo. Todas as versões têm **link externo do original**, mesmo quando uma cópia local já está instalada. O proprietário escolherá qual base usar só após jogar e comparar. Esta regra prevalece sobre recomendações anteriores de site com jogo único.
+
+O catálogo contém **13 versões/itens** a partir da fonte única [`site/catalog.json`](site/catalog.json), incluindo **2 laboratórios comprovadamente hospedados** (Guntanks e Craterfall); as demais são demos/repositórios externos ou candidatos ainda não publicados. Não afirmar que ter card significa ter motor instalado ou multiplayer no domínio.
+
+**Política canônica:** [CATALOGO_PERMANENTE.md](docs/CATALOGO_PERMANENTE.md) · [Requisitos do produto](docs/PRODUTO_CANONICO.md) · [Roadmap](docs/ROADMAP.md).
+
 # Hover Shot — multiplayer no navegador
 
 **Objetivo vigente:** criar um jogo próprio que rode **somente no navegador**, acessível em **https://hovershot.online/**, com salas online para jogar com amigos. Sem instalador Windows e sem redirecionar usuários a jogos de terceiros.

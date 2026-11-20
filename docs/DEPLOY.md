@@ -1,3 +1,5 @@
+> **ATUALIZAÇÃO DE PUBLICAÇÃO (20/11/2026):** A home é um **catálogo permanente**. Para atualizar 13 versões **não substituir nem excluir** `/labs/guntanks/` ou `/labs/craterfall/`. Publicar apenas `index.html`, `assets/home.css`, `assets/home.js` e `.hover-shot-source-commit` da branch compilada `site-build`; validar SHA, URLs, links externos, HTTP, permissões e rollback. Scripts e temporários somente no caminho autorizado da Hostinger, apagar ao final. A branch `site-build` é um build, não uma publicação automática no host. Ver [CATALOGO_PERMANENTE.md](CATALOGO_PERMANENTE.md).
+
 # Publicação segura — Hover Shot
 
 **Verificado em 2026-11-19:** GitHub Actions concluiu com sucesso e gerou a branch pública `site-build` com home e LAB 01 compilados, **11 arquivos, ~1,58 MB**, sem arquivos sourcemap e com `labs/craterfall/LICENSE` (MIT). Workflow `.github/workflows/ci.yml` gera essa branch após testes e build. [Ver Actions](https://github.com/hovershotonline/hovershot/actions).
