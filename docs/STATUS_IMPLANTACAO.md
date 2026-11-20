@@ -92,3 +92,16 @@ O proprietário cadastrou `HOVERSHOT_DEPLOY_SSH_PRIVATE_KEY`. O assistente reexe
 **Implementação:** ficha de cada versão permite registrar visual, controles, física e partida online testada (0 = não testado; 1–5 = avaliação subjetiva), mais observações; comparação e exportação textual por cópia. Dados somente em `localStorage` no navegador, sem endpoint, conta, envio de notas ou banco. O sistema **não** declara qualquer jogo selecionado, nem converte notas em prova técnica. Novos testes unitários do modelo estão no CI e passaram.
 
 **Pendências distintas:** validar no navegador real (desktop/mobile) a abertura do modal, sliders, salvar, recarregar, copiar e excluir, incluindo resposta MIME do módulo `.mjs`; executar homologação de multiplayer entre redes externas em infraestrutura persistente autorizada; obter escolha expressa do proprietário para o motor.
+
+
+## Correção de regressão da home — 20/11/2026 (verificada)
+
+**Causa reproduzida antes da correção:** o Hostinger devolvia `/assets/playtest-model.mjs` com `Content-Type: text/plain`, impedindo importação ESM; CSS e JavaScript tinham `Cache-Control: public, max-age=604800` apesar de referências de URL sem versão. Auditoria isolada via GitHub Actions [44690320936](https://github.com/hovershotonline/hovershot/actions/runs/44690320936).
+
+**Correção aprovada:** [PR #3](https://github.com/hovershotonline/hovershot/pull/3), merge SHA `194259289fab1d0a9ab16a179d29f1cbe109983c`. Fonte do módulo renomeada para `.js`; build calcula hashes SHA-256 (12 dígitos) para query versionada do CSS, JS e import do módulo, sem criar cópias físicas adicionais. Filtros passam a quebrar linhas no celular sem rolagem horizontal. O CI tem testes de dist; o deploy usa validação estrita de MIME e HTML e rollback temporário em falha. Não foram alterados backend, banco ou jogos.
+
+**Publicação verificada:** [GitHub Actions 44690948104](https://github.com/hovershotonline/hovershot/actions/runs/44690948104), `success` nos quatro jobs. Logs SSH: `ATUALIZADO=assets/home.css`, `ATUALIZADO=assets/home.js`, `ATUALIZADO=assets/playtest-model.js`, `ATUALIZADO=index.html`; `MIME_OK=/assets/home.css`, `MIME_OK=/assets/home.js`, `MIME_OK=/assets/playtest-model.js`, `RESULTADO=HOVER_SHOT_DEPLOY_ONLINE`, `SOURCE_SHA=194259289fab1d0a9ab16a179d29f1cbe109983c`. Guntanks e Craterfall responderam HTTP OK; `MYSQL=INALTERADO`, `OUTROS_DOMINIOS=INALTERADOS`, `BACKUP_PERMANENTE=NAO`.
+
+**Teste visual funcional externo pós-publicação:** auditoria isolada [44691499304](https://github.com/hovershotonline/hovershot/actions/runs/44691499304) rodou Chrome Headless por CDP contra o domínio real e concluiu `RESULTADO=HOME_LAYOUT_BROWSER_OK` com `success`. Desktop 1440 px: 13 cards e grade CSS 4 colunas, 2 após filtro hospedados, modal abre e fecha, módulo carregado, CSS/JS versionados, sem overflow horizontal. Mobile 390 px: grade CSS 1 coluna, 13 cards visíveis, `scrollWidth=390`, filtros sem overflow, card mais à direita = 373 px.
+
+**Limite da evidência:** os testes automatizados não avaliam a aparência subjetiva nem todos os passos de persistência da avaliação (salvar, recarregar e excluir); esses casos seguem pendentes de QA manual. O smoke do Hillshot permanece localhost e não comprova multiplayer real entre redes.
